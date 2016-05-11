@@ -19,3 +19,10 @@ class Delegation(models.Model):
 
     def __str__(self):              # __unicode__ on Python 2
         return self.name
+
+
+class Committee(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):              # __unicode__ on Python 2
+        return self.name
