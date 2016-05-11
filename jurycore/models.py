@@ -3,3 +3,12 @@ from __future__ import unicode_literals
 from django.db import models
 
 # Create your models here.
+
+class Delegate(models.Model):
+    name = models.CharField(max_length=100)
+    photo = models.ImageField(upload_to='delegate_pictures/')
+    committee = models.ForeignKey("Committee")
+    delegation = models.ForeignKey("Delegation")
+
+    def __str__(self):              # __unicode__ on Python 2
+        return "(%s, %s)" % (self.committee.name, self.delegation.name)
