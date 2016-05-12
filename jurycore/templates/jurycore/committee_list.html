@@ -1,0 +1,24 @@
+{% extends "jurycore/base.html" %}
+
+{% block header_title %}Committee List{% endblock %}
+{% block header_custom %}{% endblock %}
+
+
+{% block navbar %}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1>Committees</h1>
+
+  {% for committee in committees %}
+  <ul>
+    <li><a href="{% url 'jurycore:committee_show' committee.pk %}">{{ committee.name }}</a></li>
+  </ul>
+  {% endfor %}
+
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
