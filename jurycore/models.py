@@ -9,6 +9,7 @@ class Delegate(models.Model):
     photo = models.ImageField(upload_to='delegate_pictures/')
     committee = models.ForeignKey("Committee")
     delegation = models.ForeignKey("Delegation")
+    remarks = models.TextField(blank = True)
 
     def __str__(self):              # __unicode__ on Python 2
         return "(%s, %s)" % (self.committee.name, self.delegation.name)
