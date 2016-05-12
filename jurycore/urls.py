@@ -7,6 +7,7 @@ from . import views
 urlpatterns = [
     url(r'^$', views.committee_list, name='committee_list'),
     url(r'^committee/(?P<pk>\d+)/$', views.committee_show, name='committee_show'),
+    url(r'^print/$', views.printing_view, name='printing_view'),
 ]
 
 if settings.DEBUG is True:
