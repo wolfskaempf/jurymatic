@@ -11,19 +11,19 @@ class Delegate(models.Model):
     delegation = models.ForeignKey("Delegation")
     remarks = models.TextField(blank = True)
 
-    def __str__(self):              # __unicode__ on Python 2
+    def __unicode__(self):              # __unicode__ on Python 2
         return "(%s, %s)" % (self.committee.name, self.delegation.name)
 
 
 class Delegation(models.Model):
     name = models.CharField(max_length=100)
 
-    def __str__(self):              # __unicode__ on Python 2
+    def __unicode__(self):              # __unicode__ on Python 2
         return self.name
 
 
 class Committee(models.Model):
     name = models.CharField(max_length=100)
 
-    def __str__(self):              # __unicode__ on Python 2
+    def __unicode__(self):              # __unicode__ on Python 2
         return self.name
