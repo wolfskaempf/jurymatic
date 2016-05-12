@@ -1,0 +1,28 @@
+{% extends "jurycore/base.html" %}
+
+{% block header_title %}Committee List{% endblock %}
+{% block header_custom %}{% endblock %}
+
+
+{% block navbar %}
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+
+  {% for committee in committees %}
+    <h1>{{ committee.name }}</h1>
+
+    {% for delegate in committee.delegate_set.all %}
+      {% include "jurycore/_delegate_row.html" %}
+    {% endfor %}
+
+    <div class="page-break"></div>
+
+  {% endfor %}
+
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
