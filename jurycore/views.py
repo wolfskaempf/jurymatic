@@ -12,3 +12,13 @@ def committee_list(request):
     context = {"committees": committees}
     template = "jurycore/committee_list.html"
     return render(request, template, context)
+
+def committee_show(request, pk):
+    """ This view shows an individual committee"""
+    committee = Committee.objects.get(pk=pk)
+
+    delegates = Delegate.objects.filter(committee_id=pk)
+
+    context = {"committee": committee, "delegates": delegates}
+    template = "jurycore/committee_show.html"
+    return render(request, template, context)

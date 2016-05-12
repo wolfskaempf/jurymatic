@@ -6,6 +6,7 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.committee_list, name='committee_list'),
+    url(r'^committee/(?P<pk>\d+)/$', views.committee_show, name='committee_show'),
 ]
 
 if settings.DEBUG is True:
