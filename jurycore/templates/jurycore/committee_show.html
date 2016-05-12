@@ -7,6 +7,9 @@
 {% load staticfiles %}
 
 {% block content %}
+<div class="container">
+  {% include "jurycore/_print_notice.html" %}
+</div>
 <div class="container-fluid">
   <h1>{{ committee.name }}</h1>
 
