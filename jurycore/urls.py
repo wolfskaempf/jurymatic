@@ -8,6 +8,7 @@ urlpatterns = [
     url(r'^$', views.home, name='home'),
     url(r'^committees$', views.committee_list, name='committee_list'),
     url(r'^committee/(?P<pk>\d+)/$', views.committee_show, name='committee_show'),
+    url(r'^delegation/(?P<pk>\d+)/$', views.delegation_show, name='delegation_show'),
     url(r'^print/$', views.printing_view, name='printing_view'),
 ]
 
