@@ -1,1 +1,1 @@
-.row{display:flex;justify-content:space-around;break-inside:avoid}
+.row{display:flex;justify-content:space-around;break-inside:avoid}@media all{.page-break{display:none}}@media print{.page-break{display:block;page-break-before:always}}
