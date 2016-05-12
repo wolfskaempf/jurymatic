@@ -4,6 +4,13 @@ from django.shortcuts import render
 
 from .models import Committee, Delegate, Delegation
 
+def home(request):
+    """ This view shows some basic information to help the user understand the software """
+    committees = Committee.objects.all()
+
+    context = {"committees": committees}
+    template = "jurycore/home.html"
+    return render(request, template, context)
 
 def committee_list(request):
     """ This view shows a list of all committees"""
