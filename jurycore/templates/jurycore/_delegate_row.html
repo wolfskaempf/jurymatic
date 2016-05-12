@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row delegate-row">
   <div class="col-xs-4">
 
     <img class="img-responsive" src="{{delegate.photo.url}}">
@@ -44,6 +44,11 @@
     <p>
       {{ delegate.delegation }}
     </p>
+    {% if delegate.remarks %}
+      <p>
+        {{ delegate.remarks }}
+      </p>
+    {% endif %}
 
   </div>
 </div>
