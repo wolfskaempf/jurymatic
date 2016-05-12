@@ -1,1 +1,1 @@
-.row{display:flex;justify-content:space-around;break-inside:avoid}@media all{.page-break{display:none}}@media print{.page-break{display:block;page-break-before:always}}
+.delegate-row{display:flex;justify-content:space-around;break-inside:avoid}@media all{.page-break{display:none}}@media print{.page-break{display:block;page-break-before:always}}.img-sm{height:140px}.credit{text-decoration:none;color:black;transition-duration:200ms}.credit:hover{text-decoration:none;color:grey;transition-duration:200ms}

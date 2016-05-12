@@ -1,4 +1,4 @@
-.row {
+.delegate-row {
   display: flex;
   justify-content: space-around;
   break-inside: avoid;
@@ -10,4 +10,20 @@
 
 @media print {
 	.page-break	{ display: block; page-break-before: always; }
+}
+
+.img-sm {
+  height: 140px;
+}
+
+.credit {
+  text-decoration: none;
+  color: black;
+  transition-duration: 200ms;
+}
+
+.credit:hover {
+  text-decoration: none;
+  color: grey;
+  transition-duration: 200ms;
 }
