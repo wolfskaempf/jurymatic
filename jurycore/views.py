@@ -15,6 +15,7 @@ def committee_list(request):
 
 def committee_show(request, pk):
     """ This view shows an individual committee"""
+    """ This view shows an individual committee and all its delegates formatted for printing """
     committee = Committee.objects.get(pk=pk)
 
     delegates = Delegate.objects.filter(committee_id=pk)
