@@ -1,0 +1,75 @@
+{% extends "jurycore/base.html" %}
+
+{% block header_title %}{{ committee.name }}{% endblock %}
+{% block header_custom %}{% endblock %}
+
+
+{% block navbar %}
+{% endblock %}
+
+{% load staticfiles %}
+
+{% block content %}
+<div class="container-fluid">
+  <h1>{{ committee.name }}</h1>
+
+
+  {% for delegate in delegates %}
+  <div class="row">
+    <div class="col-xs-4">
+
+      <img class="img-responsive" src="{{delegate.photo.url}}">
+    </div>
+    <div class="col-xs-4">
+      <table class="table table-condensed table-bordered">
+        <tr>
+          <th></th>
+          <th>CW</th>
+          <th>GA</th>
+        </tr>
+        <tr>
+          <td>LS</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>UT</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>TW</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>TO</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>OI</td>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-xs-6">
+      <p>
+        {{ delegate.name }}
+      </p>
+      <p>
+        {{ delegate.delegation }}
+      </p>
+
+    </div>
+  </div>
+  {% endfor %}
+
+
+
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
