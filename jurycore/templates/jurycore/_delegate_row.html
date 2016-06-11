@@ -38,6 +38,11 @@
     </table>
   </div>
   <div class="col-xs-6">
+    {% if delegation_show %}
+    <p>
+      <b>{{ delegate.committee }}</b>
+    </p>
+    {% endif %} <!--/if delegation view-->
     <p>
       {{ delegate.name }}
     </p>
