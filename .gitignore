@@ -15,3 +15,7 @@ config.codekit
 **/.sass-cache/*
 
 media/*
+
+Scripts/*
+Lib/*
+tcl/*
