@@ -13,7 +13,7 @@
 #>
 #Requires -Version 3.0
 
-echo "Welcome to the jurymatic installer!
+Write-Output "Welcome to the jurymatic installer!
    _                                  _   _
   (_)_   _ _ __ _   _ _ __ ___   __ _| |_(_) ___
   | | | | | '__| | | | '_ ` _ \ / _` | __| |/ __|
@@ -21,9 +21,9 @@ echo "Welcome to the jurymatic installer!
  _/ |\__,_|_|   \__, |_| |_| |_|\__,_|\__|_|\___|
 |__/            |___/"
 
-echo "=============================="
-echo "This file will start the installation process in an elevated PowerShell."
-echo "=============================="
+Write-Output "=============================="
+Write-Output "This file will start the installation process."
+Write-Output "=============================="
 
 python.exe $PSScriptRoot\get-pip.py
 
@@ -31,18 +31,18 @@ pip install virtualenv
 
 virtualenv $PSScriptRoot
 
-iex .\Scripts\activate.ps1
+Invoke-Expression .\Scripts\activate.ps1
 
 pip install -r requirements.txt
 
-python manage.py migrate
+python.exe manage.py migrate
 
-echo "============================="
+Write-Output "============================="
 
-echo "We are now going to create the administration user for the jurymatic server. Please remember the details you enter here. Only username and password are required fields."
+Write-Output "We are now going to create the administration user for the jurymatic server. Please remember the details you enter here. Only username and password are required fields."
 
-echo "============================="
+Write-Output "============================="
 
-python manage.py createsuperuser
+python.exe manage.py createsuperuser
 
-echo "Congratulations, you are done. You can now run start.bat or Start-Jurymatic.ps1 respectively."
+Write-Output "Congratulations, you are done. You can now run start.bat or Start-Jurymatic.ps1 respectively."
