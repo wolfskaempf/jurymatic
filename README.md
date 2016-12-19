@@ -20,8 +20,8 @@ _Jurymatic_ requires both PowerShell (version 3.0 or newer) and Python 2 to work
 
 1. Download the latest release from the releases section.
 2. Unpack it and open the folder it contains.
-3. Double-click on `install.cmd`.
-4. Enter your computer's password when asked.
+3. Double-click on `install.bat`.
+4. Allow the program to be executed despite security warnings when asked.
 
 ## Usage
 
@@ -29,7 +29,7 @@ After you're done installing the program, you can easily start _Jurymatic_ each 
 
 **macOS**: Right-click `start.command`, select `Open` twice and `jurymatic` will start.
 
-**Windows**: Double-click on `start.cmd`
+**Windows**: Double-click on `start.bat`
 
 ### Windows
 
