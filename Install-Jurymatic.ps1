@@ -1,12 +1,12 @@
 <#
     .NOTES
-        Coded with <3 by @rasmuskriest and @wolfskaempf
-    
+        Script coded with <3 by @rasmuskriest
+
     .SYNOPSIS
         The final solution for creating jury booklets for events of the European Youth Parliament.
 
     .DESCRIPTION
-        The final solution for creating jury booklets for events of the European Youth Parliament. This is script one out of two which is meant to install a new JURYMATIC instance.
+        The final solution for creating jury booklets for events of the European Youth Parliament. This is script one out of two which sets up a new jurymatic instance.
 
     .EXAMPLE
         .\Install-Jurymatic.ps1
