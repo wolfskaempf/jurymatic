@@ -18,6 +18,8 @@ If you like watching video tutorials, you can have a look at this [playlist of v
 
 _You need at least version 3.0 of PowerShell. It is built-in starting from Windows 8. If you are using Windows 7 or lower, you will have to upgrade PowerShell to the latest version._
 
+As Windows is not being shipped with Python 2, you have to install the software manually before using _Jurymatic_. To make this as easy as possible, you can just double-click the included file `install-prerequisites.bat`. If your default browser is not _Internet Explorer_ or _Edge_ please copy and paste the following URL into either manually: `http://boxstarter.org/package/nr/python2`
+
 1. Download the latest release from the releases section.
 2. Unpack it and open the folder it contains.
 3. Double-click on `install.cmd`.
