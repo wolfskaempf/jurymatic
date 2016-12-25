@@ -4,7 +4,7 @@ The final solution for creating jury booklets for events of the European Youth P
 [![Home Page of jurymatic](http://i.imgur.com/whWcu7O.png)](https://www.youtube.com/playlist?list=PLWqZWxSNRmk83SRJ2hx3tqCu2GrglyhFW)
 
 ## Installation
-If you like watching video tutorials, you can have a look at this [playlist of videos on how to use `jurymatic`](https://www.youtube.com/playlist?list=PLWqZWxSNRmk83SRJ2hx3tqCu2GrglyhFW). If you're not, here's the quick rundown.
+If you like watching video tutorials, you can have a look at this [playlist of videos on how to use `jurymatic`](https://www.youtube.com/playlist?list=PLWqZWxSNRmk83SRJ2hx3tqCu2GrglyhFW). If you're not into that, here's the quick rundown.
 
 ### macOS
 
