@@ -11,9 +11,9 @@ echo "Welcome to the jurymatic installer!
 |__/            |___/"
 
 echo "=============================="
-echo "You will now have to enter your password. During the entire process, you may be asked multiple times to enter it."
+echo "You will now have to enter your password. During the entire process, you may be asked multiple times to enter it. It is normal, that while you are typing your password, it does not show up on the screen."
 echo "=============================="
-$DIR/get-pip.py
+sudo python $DIR/get-pip.py
 
 sudo pip install virtualenv
 
@@ -33,6 +33,11 @@ echo "We are now going to create the administration user for the jurymatic serve
 
 echo "============================="
 
+
 python manage.py createsuperuser
 
+echo "============================="
+
 echo "Congratulations, you are done. You can now run start.command."
+
+echo "============================="
