@@ -8,7 +8,7 @@ If you like watching video tutorials, you can have a look at this [playlist of v
 
 ### macOS
 
-1. Download the latest release from the releases section.
+1. Download the latest release from the [releases section](https://github.com/wolfskaempf/jurymatic/releases).
 2. Unpack it and open the folder it contains.
 3. Right-click on `install.command` and click `Open`.
 4. Click `Open` again, indicating that you trust the source of the file.
@@ -18,7 +18,7 @@ If you like watching video tutorials, you can have a look at this [playlist of v
 
 `jurymatic` requires both PowerShell (version 3.0 or newer) and Python 2 to work on Windows. Since neither are part of a standard installation, you have to install the software manually before using `jurymatic`. To make this as easy as possible, you can just double-click the included file `install-prerequisites.bat`. If your default browser is not _Internet Explorer_ or _Edge_ please copy and paste the following URL into either manually: `http://boxstarter.org/package/nr/powershell,python2`
 
-1. Download the latest release from the releases section.
+1. Download the latest release from the [releases section](https://github.com/wolfskaempf/jurymatic/releases).
 2. Unpack it and open the folder it contains.
 3. Double-click on `install.bat`.
 4. Allow the program to be executed despite security warnings when asked.
