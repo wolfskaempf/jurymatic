@@ -16,7 +16,7 @@ If you like watching video tutorials, you can have a look at this [playlist of v
 
 ### Windows
 
-`jurymatic` requires both PowerShell (version 3.0 or newer) and Python 2 to work on Windows. Since neither are part of a standard installation, you have to install the software manually before using `jurymatic`. To make this as easy as possible, you can just double-click the included file `install-prerequisites.bat`. If your default browser is not _Internet Explorer_ or _Edge_ please copy and paste the following URL into either manually: `http://boxstarter.org/package/nr/powershell,python2`
+`jurymatic` requires both PowerShell (version 3.0 or newer) and Python 2 to work on Windows. Since neither are part of a standard installation, you have to install the software manually before using `jurymatic`. To make this as easy as possible, you can just double-click the included file `install-prerequisites.bat`. If your default browser is not _Internet Explorer_ or _Edge_ please copy and paste the following URL into either manually: `http://boxstarter.org/package/nr/powershell,python2` You might have to confirm the installation and enter your (Administrator's) password. After the script has finished, restart your computer.
 
 1. Download the latest release from the releases section.
 2. Unpack it and open the folder it contains.
