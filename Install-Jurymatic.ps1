@@ -1,6 +1,6 @@
 <#
     .NOTES
-        Script coded with <3 by @rasmuskriest
+        Script <> with <3 by @rasmuskriest
 
     .SYNOPSIS
         The final solution for creating jury booklets for events of the European Youth Parliament.
@@ -25,24 +25,52 @@ Write-Output "=============================="
 Write-Output "This file will start the installation process."
 Write-Output "=============================="
 
-python.exe $PSScriptRoot\get-pip.py
+if (Get-Command py.exe -errorAction SilentlyContinue) {
+    $Env:PY_PYTHON = 2
 
-pip install virtualenv
+    py.exe $PSScriptRoot\get-pip.py
 
-virtualenv $PSScriptRoot
+    pip install virtualenv
 
-Invoke-Expression .\Scripts\activate.ps1
+    virtualenv $PSScriptRoot
 
-pip install -r requirements.txt
+    Invoke-Expression .\Scripts\activate.ps1
 
-python.exe manage.py migrate
+    pip install -r requirements.txt
 
-Write-Output "============================="
+    py.exe manage.py migrate
 
-Write-Output "We are now going to create the administration user for the jurymatic server. Please remember the details you enter here. Only username and password are required fields."
+    Write-Output "============================="
+    Write-Output "We are now going to create the administration user for the jurymatic server. Please remember the details you enter here. Only username and password are required fields."
+    Write-Output "============================="
 
-Write-Output "============================="
+    py.exe manage.py createsuperuser
 
-python.exe manage.py createsuperuser
+    Write-Output "Congratulations, you are done. You can now run start.bat or Start-Jurymatic.ps1 respectively."
 
-Write-Output "Congratulations, you are done. You can now run start.bat or Start-Jurymatic.ps1 respectively."
+    Pause
+}
+
+else {
+    python.exe $PSScriptRoot\get-pip.py
+
+    pip install virtualenv
+
+    virtualenv $PSScriptRoot
+
+    Invoke-Expression .\Scripts\activate.ps1
+
+    pip install -r requirements.txt
+
+    python.exe manage.py migrate
+
+    Write-Output "============================="
+    Write-Output "We are now going to create the administration user for the jurymatic server. Please remember the details you enter here. Only username and password are required fields."
+    Write-Output "============================="
+
+    python.exe manage.py createsuperuser
+
+    Write-Output "Congratulations, you are done. You can now run start.bat or Start-Jurymatic.ps1 respectively."
+
+    Pause
+}
