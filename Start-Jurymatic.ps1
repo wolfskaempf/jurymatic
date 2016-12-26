@@ -21,4 +21,4 @@ Write-Output "=============================="
 
 Invoke-Expression .\Scripts\activate.ps1
 Start-Process http://localhost:8000
-py.exe -2 $PSScriptRoot\manage.py runserver 0.0.0.0:8000
+python.exe $PSScriptRoot\manage.py runserver 0.0.0.0:8000

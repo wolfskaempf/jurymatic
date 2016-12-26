@@ -25,15 +25,15 @@ Write-Output "=============================="
 Write-Output "This file will start the installation process."
 Write-Output "=============================="
 
-py.exe -2 $PSScriptRoot\get-pip.py
+python.exe $PSScriptRoot\get-pip.py
 
-pip2 install virtualenv
+pip install virtualenv
 
 virtualenv $PSScriptRoot
 
 Invoke-Expression .\Scripts\activate.ps1
 
-pip2 install -r requirements.txt
+pip install -r requirements.txt
 
 python.exe manage.py migrate
 
@@ -43,6 +43,6 @@ Write-Output "We are now going to create the administration user for the jurymat
 
 Write-Output "============================="
 
-py.exe -2 manage.py createsuperuser
+python.exe manage.py createsuperuser
 
 Write-Output "Congratulations, you are done. You can now run start.bat or Start-Jurymatic.ps1 respectively."
