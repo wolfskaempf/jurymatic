@@ -1,6 +1,6 @@
 <#
     .NOTES
-        Script coded with <3 by @rasmuskriest
+        Script <> with <3 by @rasmuskriest
 
     .SYNOPSIS
         The final solution for creating jury booklets for events of the European Youth Parliament.
@@ -16,9 +16,22 @@
 $localip = Test-Connection -ComputerName (hostname) -Count 1  | Select-Object IPV4Address
 
 Write-Output "Your local IP address: ${localip}:8000"
-
 Write-Output "=============================="
 
-Invoke-Expression .\Scripts\activate.ps1
-Start-Process http://localhost:8000
-python.exe $PSScriptRoot\manage.py runserver 0.0.0.0:8000
+if (Get-Command py.exe -errorAction SilentlyContinue) {
+    $Env:PY_PYTHON = 2
+
+    Invoke-Expression .\Scripts\activate.ps1
+
+    Start-Process http://localhost:8000
+
+    py.exe $PSScriptRoot\manage.py runserver 0.0.0.0:8000
+}
+
+else {
+    Invoke-Expression .\Scripts\activate.ps1
+
+    Start-Process http://localhost:8000
+    
+    python.exe $PSScriptRoot\manage.py runserver 0.0.0.0:8000
+}
