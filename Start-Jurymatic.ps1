@@ -19,13 +19,12 @@ Write-Output "Your local IP address: ${localip}:8000"
 Write-Output "=============================="
 
 if (Get-Command py.exe -errorAction SilentlyContinue) {
-    $Env:PY_PYTHON = 2
 
     Invoke-Expression .\Scripts\activate.ps1
 
     Start-Process http://localhost:8000
 
-    py.exe $PSScriptRoot\manage.py runserver 0.0.0.0:8000
+    py.exe -2 $PSScriptRoot\manage.py runserver 0.0.0.0:8000
 }
 
 else {

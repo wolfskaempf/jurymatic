@@ -25,11 +25,12 @@ If you like watching video tutorials, you can have a look at this [playlist of v
 
 ## Usage
 
-After you're done installing the program, you can easily start `jurymatic` each time you need it.
 
 **macOS**: Right-click `start.command`, select `Open` twice and `jurymatic` will start.
 
 **Windows**: Double-click on `start.bat`
+
+To quit `jurymatic` after using it, just close the window called _Terminal_ (macOS) or _cmd_ (Windows).
 
 ## Video Tutorials
 If you'd like to watch videos to understand how to use `jurymatic`, you can do so [here on YouTube](https://www.youtube.com/playlist?list=PLWqZWxSNRmk83SRJ2hx3tqCu2GrglyhFW).
