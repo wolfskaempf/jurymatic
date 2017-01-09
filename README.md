@@ -25,6 +25,7 @@ If you like watching video tutorials, you can have a look at this [playlist of v
 
 ## Usage
 
+After you're done installing the program, you can easily start `jurymatic` each time you need it. All data will be saved so you can easily add or change data.
 
 **macOS**: Right-click `start.command`, select `Open` twice and `jurymatic` will start.
 
