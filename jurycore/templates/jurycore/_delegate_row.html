@@ -48,7 +48,7 @@
     </p>
     <p
     {% if delegate.delegation.colour %}
-      style="background-color: {{ delegate.delegation.colour }};" class="delegation-color-box"
+      style="background-color: {{ delegate.delegation.colour }} !important; --webkit-print-color-adjust: exact;" class="delegation-color-box"
     {% endif %}
     >
       {{ delegate.delegation }}

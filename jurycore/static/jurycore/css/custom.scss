@@ -4,8 +4,9 @@
   break-inside: avoid;
 }
 
+
 .delegation-color-box {
-    color: white;
+    color: white !important; /* Yes, using !important sucks, but it's necessary so it will be printed properly */
     padding: 5px;
     display: inline;
     border-radius: 2px;
