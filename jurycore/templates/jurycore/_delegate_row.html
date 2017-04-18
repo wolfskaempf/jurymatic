@@ -46,7 +46,11 @@
     <p>
       {{ delegate.name }}
     </p>
-    <p>
+    <p
+    {% if delegate.delegation.colour %}
+      style="background-color: {{ delegate.delegation.colour }};" class="delegation-color-box"
+    {% endif %}
+    >
       {{ delegate.delegation }}
     </p>
     {% if delegate.remarks %}

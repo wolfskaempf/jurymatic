@@ -17,6 +17,7 @@ class Delegate(models.Model):
 
 class Delegation(models.Model):
     name = models.CharField(max_length=100)
+    colour = models.CharField(max_length=8, blank=True)
 
     def __unicode__(self):              # __unicode__ on Python 2
         return self.name

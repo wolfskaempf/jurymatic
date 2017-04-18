@@ -4,6 +4,13 @@
   break-inside: avoid;
 }
 
+.delegation-color-box {
+    color: white;
+    padding: 5px;
+    display: inline;
+    border-radius: 2px;
+}
+
 @media all {
 	.page-break	{ display: none; }
 }
