@@ -24,7 +24,7 @@ if (Get-Command py.exe -errorAction SilentlyContinue) {
 
     Start-Process http://localhost:8000
 
-    py.exe -2 $PSScriptRoot\manage.py runserver 0.0.0.0:8000
+    py.exe $PSScriptRoot\manage.py runserver 0.0.0.0:8000
 }
 
 else {

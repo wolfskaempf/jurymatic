@@ -27,26 +27,27 @@ Write-Output "=============================="
 
 if (Get-Command py.exe -errorAction SilentlyContinue) {
 
-    py.exe -2 $PSScriptRoot\get-pip.py
+    py.exe $PSScriptRoot\get-pip.py
 
-    pip2.exe install virtualenv
+    pip.exe install virtualenv
 
-    virtualenv $PSScriptRoot
+    virtualenv -p python3 $PSScriptRoot
 
     Invoke-Expression .\Scripts\activate.ps1
 
-    pip2.exe install -r requirements.txt
+    pip.exe install -r requirements.txt
 
-    py.exe -2 manage.py migrate
+    py.exe manage.py migrate
 
     Write-Output "============================="
     Write-Output "We are now going to create the administration user for the jurymatic server. Please remember the details you enter here. Only username and password are required fields."
     Write-Output "============================="
 
-    py.exe -2 manage.py createsuperuser
+    py.exe manage.py shell -c "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@admin.com', 'admin')"
 
     Write-Output "============================="
-    Write-Output "Congratulations, you are done. You can now run start.bat or Start-Jurymatic.ps1 respectively."
+    Write-Output "Congratulations, you are done. You can now run start.bat or Start-Jurymatic.ps1 respectively and log into jurymatic with username 'admin' and password 'admin."
+    Write-Output "Please make sure to change the password after your first login."
     Write-Output "============================="
 
     Pause
@@ -57,7 +58,7 @@ else {
 
     pip.exe install virtualenv
 
-    virtualenv $PSScriptRoot
+    virtualenv -p python3 $PSScriptRoot
 
     Invoke-Expression .\Scripts\activate.ps1
 
@@ -69,10 +70,11 @@ else {
     Write-Output "We are now going to create the administration user for the jurymatic server. Please remember the details you enter here. Only username and password are required fields."
     Write-Output "============================="
 
-    python.exe manage.py createsuperuser
+    python.exe manage.py shell -c "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@admin.com', 'admin')"
 
     Write-Output "============================="
-    Write-Output "Congratulations, you are done. You can now run start.bat or Start-Jurymatic.ps1 respectively."
+    Write-Output "Congratulations, you are done. You can now run start.bat or Start-Jurymatic.ps1 respectively and log into jurymatic with username 'admin' and password 'admin."
+    Write-Output "Please make sure to change the password after your first login."
     Write-Output "============================="
 
     Pause
