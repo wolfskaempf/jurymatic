@@ -17,7 +17,7 @@ sudo python $DIR/get-pip.py
 
 sudo pip install virtualenv
 
-virtualenv $DIR
+virtualenv -p python3 $DIR
 
 cd $DIR
 
@@ -27,17 +27,12 @@ pip install -r requirements.txt
 
 python manage.py migrate
 
-echo "============================="
-
-echo "We are now going to create the administration user for the jurymatic server. Please remember the details you enter here. Only username and password are required fields."
+python manage.py shell -c "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@admin.com', 'admin')"
 
 echo "============================="
 
+echo "Congratulations, you are done. You can now run start.command and log into jurymatic with username 'admin' and password 'admin."
 
-python manage.py createsuperuser
-
-echo "============================="
-
-echo "Congratulations, you are done. You can now run start.command."
+echo "Please make sure to change the password after your first login."
 
 echo "============================="
