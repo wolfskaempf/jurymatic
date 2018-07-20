@@ -4,7 +4,7 @@ from django.conf import settings
 
 from . import views
 
-app_name='jurycore'
+app_name = 'jurycore'
 urlpatterns = [
     path('', views.home, name='home'),
     path('delegate_create', views.delegate_create, name='delegate_create'),

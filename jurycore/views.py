@@ -5,6 +5,7 @@ from django.shortcuts import render
 from .forms import DelegateForm
 from .models import Committee, Delegate, Delegation
 
+
 def home(request):
     """ This view shows some basic information to help the user understand the software """
     committees = Committee.objects.all()
@@ -14,6 +15,7 @@ def home(request):
     context = {"committees": committees, "delegations": delegations, "latest_delegate": latest_delegate}
     template = "jurycore/home.html"
     return render(request, template, context)
+
 
 def delegate_create(request):
     """This view creates delegates"""
@@ -31,6 +33,7 @@ def delegate_create(request):
     }
     return render(request, template, context)
 
+
 def committee_list(request):
     """ This view shows a list of all committees"""
     committees = Committee.objects.all().order_by("name")
@@ -38,6 +41,7 @@ def committee_list(request):
     context = {"committees": committees}
     template = "jurycore/committee_list.html"
     return render(request, template, context)
+
 
 def committee_show(request, pk):
     """ This view shows an individual committee and all its delegates formatted for printing """
@@ -49,6 +53,7 @@ def committee_show(request, pk):
     template = "jurycore/committee_show.html"
     return render(request, template, context)
 
+
 def delegation_show(request, pk):
     """ This view shows an individual delegation and all its delegates formatted for printing """
     delegation = Delegation.objects.get(pk=pk)
@@ -58,6 +63,7 @@ def delegation_show(request, pk):
     context = {"delegation": delegation, "delegates": delegates, "delegation_show": True}
     template = "jurycore/delegation_show.html"
     return render(request, template, context)
+
 
 def printing_view(request):
     """ This view lists all committees and all delegates at the same time, formatted for printing """
