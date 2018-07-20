@@ -8,35 +8,35 @@ If you like watching video tutorials, you can have a look at this [playlist of v
 
 ### macOS
 
-0. Download and install `Python 3.7.0` or newer from the [official Python website](https://www.python.org/downloads/).
-0. Download the latest release of `jurymatic` from the [releases section](https://github.com/wolfskaempf/jurymatic/releases).
-0. Unpack it and open the folder it contains.
-0. Right-click on `install.command` and click `Open`.
-0. Click `Open` again, indicating that you trust the source of the file.
-0. Follow the steps on the screen. Enter your computer's password when asked.
+1. Download and install `Python 3.7.0` or newer from the [official Python website](https://www.python.org/downloads/).
+1. Download the latest release of `jurymatic` from the [releases section](https://github.com/wolfskaempf/jurymatic/releases).
+1. Unpack it and open the folder it contains.
+1. Right-click on `install.command` and click `Open`.
+1. Click `Open` again, indicating that you trust the source of the file.
+1. Follow the steps on the screen. Enter your computer's password when asked.
 
 ### Linux
 
 Any popular Linux distribution should be fine. Ubuntu 18.04 was used for the following step-by-step installation.
 
-0. Download the latest release of `jurymatic` from the [releases section](https://github.com/wolfskaempf/jurymatic/releases).
-0. Unpack it and open the folder it contains. If you are using the standard file browser with Ubuntu 18.04, right-click anywhere in the folder and select `Open in Terminal`. Alternatively, open a Terminal (Ctrl+Alt+T) and navigate into the folder. Make sure you are in the root directory of the project.
-0. Install any potentially missing dependency by executing the following command:
+1. Download the latest release of `jurymatic` from the [releases section](https://github.com/wolfskaempf/jurymatic/releases).
+1. Unpack it and open the folder it contains. If you are using the standard file browser with Ubuntu 18.04, right-click anywhere in the folder and select `Open in Terminal`. Alternatively, open a Terminal (Ctrl+Alt+T) and navigate into the folder. Make sure you are in the root directory of the project.
+1. Install any potentially missing dependency by executing the following command:
 `sudo apt-get install libtiff5-dev libjpeg8-dev zlib1g-dev libfreetype6-dev liblcms2-dev libwebp-dev tcl8.6-dev tk8.6-dev python3-minimal`
-0. Start installation by executing `./install.command`
-0. Follow the steps on the screen. Enter sudo password when asked.
+1. Start installation by executing `./install.command`
+1. Follow the steps on the screen. Enter sudo password when asked.
 
-If you encounter issues during installation, make sure at least the libjpeg and zlib [requirements for pillow](http://pillow.readthedocs.io/en/3.0.x/installation.html) are satisfied for your distribution.
+If you encounter issues during installation, make sure at least the libjpeg and zlib [requirements for pillow](https://pillow.readthedocs.io/en/5.2.x/installation.html) are satisfied for your distribution.
 
 ### Windows
 
 Note: Any time you open one of the files of `jurymatic` Windows might inform you, that it did not run the file in order to protect you. However, this will prevent the usage of `jurymatic`. In order to use `jurymatic` you need to click _More information_ and then _Run anyway_.
 
-0. Download the latest release of `jurymatic` from the [releases section](https://github.com/wolfskaempf/jurymatic/releases).
-0. `jurymatic` requires both PowerShell (version 3.0 or newer) and Python 3 to work on Windows. Since neither are part of a standard installation, you have to install the software manually before using `jurymatic`. To make this as easy as possible, you can  double-click the included file `install-prerequisites.bat`, if your standard browser is _Internet Explorer_ or _Edge_. If your default browser is **not** _Internet Explorer_ or _Edge_ please copy and paste the following URL into either manually: `http://boxstarter.org/package/nr/dotnet4.5.1,powershell,python3` You might have to confirm the installation and enter your (Administrator's) password. After the script has finished, restart your computer.
-0. Unpack it and open the folder it contains.
-0. Double-click on `install.bat`.
-0. Allow the program to be executed despite security warnings when asked.
+1. Download the latest release of `jurymatic` from the [releases section](https://github.com/wolfskaempf/jurymatic/releases).
+1. `jurymatic` requires both PowerShell (version 3.0 or newer) and Python 3 to work on Windows. Since neither are part of a standard installation, you have to install the software manually before using `jurymatic`. To make this as easy as possible, you can  double-click the included file `install-prerequisites.bat`, if your standard browser is _Internet Explorer_ or _Edge_. If your default browser is **not** _Internet Explorer_ or _Edge_ please copy and paste the following URL into either manually: `http://boxstarter.org/package/nr/dotnet4.5.1,powershell,python3` You might have to confirm the installation and enter your (Administrator's) password. After the script has finished, restart your computer.
+1. Unpack it and open the folder it contains.
+1. Double-click on `install.bat`.
+1. Allow the program to be executed despite security warnings when asked.
 
 ## Usage
 
