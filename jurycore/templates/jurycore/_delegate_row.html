@@ -1,63 +1,64 @@
 <div class="row delegate-row">
-  <div class="col-xs-4">
+    <div class="col-xs-4">
 
-    <img class="img-responsive" src="{{ delegate.photo.url }}">
-  </div>
-  <div class="col-xs-4">
-    <table class="table table-condensed table-bordered">
-      <tr>
-        <th></th>
-        <th>CW</th>
-        <th>GA</th>
-      </tr>
-      <tr>
-        <td>LS</td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>UT</td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>TW</td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>TO</td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>OI</td>
-        <td></td>
-        <td></td>
-      </tr>
-    </table>
-  </div>
-  <div class="col-xs-6">
-    {% if delegation_show %}
-    <p>
-      <b>{{ delegate.committee }}</b>
-    </p>
-    {% endif %} <!--/if delegation view-->
-    <p>
-      {{ delegate.name }}
-    </p>
-    <p
-    {% if delegate.delegation.colour %}
-      style="background-color: {{ delegate.delegation.colour }} !important; --webkit-print-color-adjust: exact;" class="delegation-color-box"
-    {% endif %}
-    >
-      {{ delegate.delegation }}
-    </p>
-    {% if delegate.remarks %}
-      <p>
-        {{ delegate.remarks }}
-      </p>
-    {% endif %}
+        <img class="img-responsive" src="{{ delegate.photo.url }}">
+    </div>
+    <div class="col-xs-4">
+        <table class="table table-condensed table-bordered">
+            <tr>
+                <th></th>
+                <th>CW</th>
+                <th>GA</th>
+            </tr>
+            <tr>
+                <td>LS</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>UT</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>TW</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>TO</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>OI</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-xs-6">
+        {% if delegation_show %}
+            <p>
+                <b>{{ delegate.committee }}</b>
+            </p>
+        {% endif %} <!--/if delegation view-->
+        <p>
+            {{ delegate.name }}
+        </p>
+        <p
+                {% if delegate.delegation.colour %}
+                    style="background-color: {{ delegate.delegation.colour }} !important; --webkit-print-color-adjust: exact;"
+                    class="delegation-color-box"
+                {% endif %}
+        >
+            {{ delegate.delegation }}
+        </p>
+        {% if delegate.remarks %}
+            <p>
+                {{ delegate.remarks }}
+            </p>
+        {% endif %}
 
-  </div>
+    </div>
 </div>

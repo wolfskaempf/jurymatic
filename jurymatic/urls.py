@@ -17,7 +17,6 @@ from django.conf.urls import include, url
 from django.urls import path
 from django.contrib import admin
 
-
 urlpatterns = [
     path('', include('jurycore.urls', namespace="jurycore")),
     url(r'^admin/', admin.site.urls),

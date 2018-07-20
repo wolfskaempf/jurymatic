@@ -1,0 +1,55 @@
+{% extends "jurycore/base.html" %}
+
+{% block header_title %}Create Delegate{% endblock %}
+{% block header_custom %}{% endblock %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+    <div class="container">
+        <h1>Add delegate</h1>
+        {% if messages %}
+            <div class="alert alert-success" role="alert">
+                {% for message in messages %}
+                    <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+            {{ form.non_field_errors }}
+            <div class="form-group">
+                {{ form.name.label_tag }}
+                {{ form.name.errors }}
+                {{ form.name|add_class:"form-control" }}
+            </div>
+            <div class="form-group">
+                {{ form.photo.label_tag }}
+                {{ form.photo.errors }}
+                {{ form.photo }}
+                <p class="help-block visible-xs">If you are on your phone, you can select "Camera" to directly upload a
+                    photo you have taken.</p>
+            </div>
+            <div class="form-group">
+                {{ form.committee.label_tag }}
+                {{ form.committee.errors }}
+                {{ form.committee|add_class:"form-control" }}
+                <p class="help-block">Please add additional committees in the <a href="/admin/jurycore/committee/">admin
+                    area</a> and reload this page.</p>
+            </div>
+            <div class="form-group">
+                {{ form.delegation.label_tag }}
+                {{ form.delegation.errors }}
+                {{ form.delegation|add_class:"form-control" }}
+                <p class="help-block">Please add additional delegations in the <a href="/admin/jurycore/delegation/">admin
+                    area</a> and reload this page.</p>
+            </div>
+            <div class="form-group">
+                {{ form.remarks.label_tag }}
+                {{ form.remarks.errors }}
+                {{ form.remarks|add_class:"form-control"|attr:"placeholder:Optional" }}
+            </div>
+            <button type="submit" class="btn btn-default">Save Delegate</button>
+        </form>
+    </div>
+
+{% endblock %}
