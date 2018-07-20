@@ -1,7 +1,8 @@
+from django.contrib import messages
 from django.shortcuts import render
 
 # Create your views here.
-
+from .forms import DelegateForm
 from .models import Committee, Delegate, Delegation
 
 def home(request):
@@ -12,6 +13,22 @@ def home(request):
 
     context = {"committees": committees, "delegations": delegations, "latest_delegate": latest_delegate}
     template = "jurycore/home.html"
+    return render(request, template, context)
+
+def delegate_create(request):
+    """This view creates delegates"""
+    form = DelegateForm()
+    if request.method == "POST":
+        form = DelegateForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save(True)
+            messages.success(request, form.cleaned_data['name'] + ' has been added successfully.')
+            form = DelegateForm()
+
+    template = "jurycore/delegate_create.html"
+    context = {
+        "form": form
+    }
     return render(request, template, context)
 
 def committee_list(request):
