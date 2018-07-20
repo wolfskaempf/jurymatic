@@ -31,7 +31,7 @@ if (Get-Command py.exe -errorAction SilentlyContinue) {
 
     pip.exe install virtualenv
 
-    virtualenv -p python3 $PSScriptRoot
+    virtualenv $PSScriptRoot
 
     Invoke-Expression .\Scripts\activate.ps1
 
@@ -58,7 +58,7 @@ else {
 
     pip.exe install virtualenv
 
-    virtualenv -p python3 $PSScriptRoot
+    virtualenv $PSScriptRoot
 
     Invoke-Expression .\Scripts\activate.ps1
 
