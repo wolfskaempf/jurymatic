@@ -7,18 +7,17 @@
 {% load staticfiles %}
 
 {% block content %}
-<div class="container">
-  {% include "jurycore/_print_notice.html" %}
-</div>
-<div class="container-fluid">
-  <h1>{{ committee.name }}</h1>
+    <div class="container">
+        {% include "jurycore/_print_notice.html" %}
+    </div>
+    <div class="container-fluid">
+        <h1>{{ committee.name }}</h1>
 
 
-  {% for delegate in delegates %}
-  {% include "jurycore/_delegate_row.html" %}
-  {% endfor %}
+        {% for delegate in delegates %}
+            {% include "jurycore/_delegate_row.html" %}
+        {% endfor %}
 
 
-
-</div>
+    </div>
 {% endblock %}
