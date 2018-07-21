@@ -21,6 +21,7 @@ class Booklet(models.Model):
 
 
 class Delegate(models.Model):
+    booklet = models.ForeignKey("Booklet", on_delete=CASCADE)
     name = models.CharField(max_length=100)
     photo = models.ImageField(upload_to='delegate_pictures/')
     committee = models.ForeignKey("Committee", on_delete=CASCADE)
@@ -39,6 +40,7 @@ class Delegate(models.Model):
 class Delegation(models.Model):
     name = models.CharField(max_length=100)
     colour = models.CharField(max_length=8, blank=True)
+    booklet = models.ForeignKey("Booklet", on_delete=CASCADE)
 
     def __str__(self):
         return self.name
@@ -51,6 +53,7 @@ class Delegation(models.Model):
 
 class Committee(models.Model):
     name = models.CharField(max_length=100)
+    booklet = models.ForeignKey("Booklet", on_delete=CASCADE)
 
     def __str__(self):
         return self.name
