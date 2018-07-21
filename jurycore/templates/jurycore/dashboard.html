@@ -1,0 +1,24 @@
+{% extends "jurycore/base.html" %}
+
+{% block header_title %}Dashboard{% endblock %}
+{% block header_custom %}{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        <h1>{{ user.username }}'s jurymatic</h1>
+        <h2>Your booklets</h2>
+        {% if booklets %}
+            {% for booklet in booklets %}
+                <ul>
+                    <li><a href="{% url 'jurycore:booklet_show' booklet.slug %}">{{ booklet.session_name }}</a></li>
+                </ul>
+            {% endfor %}
+        {% else %}
+            <p>
+                You have not created any booklets yet.
+            </p>
+        {% endif %}
+    </div>
+
+{% endblock %}

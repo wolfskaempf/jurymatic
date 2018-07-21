@@ -1,19 +1,31 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
 # Create your views here.
+from guardian.shortcuts import get_objects_for_user
+
 from jurycore.forms import DelegateForm
 from jurycore.models import Committee, Delegate, Delegation, Booklet
 
 
 def home(request):
     """ This view shows some basic information to help the user understand the software """
-
+    if request.user.is_authenticated:
+        return redirect('jurycore:dashboard')
     context = {}
     template = "jurycore/home.html"
     return render(request, template, context)
 
+@login_required()
+def dashboard(request):
+    """ This view is an overview of the users booklets """
+
+    booklets = get_objects_for_user(request.user, 'view_booklet', Booklet)
+
+    context = {"booklets": booklets}
+    template = "jurycore/dashboard.html"
+    return render(request, template, context)
 
 @login_required()
 def booklet_show(request, slug):
