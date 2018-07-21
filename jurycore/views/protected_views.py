@@ -1,10 +1,10 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
 from jurycore.forms import DelegateForm
-from jurycore.models import Committee, Delegate, Delegation
+from jurycore.models import Committee, Delegate, Delegation, Booklet
 
 
 def home(request):
@@ -16,13 +16,13 @@ def home(request):
 
 
 @login_required()
-def booklet_show(request):
-    """ Unfinished: This view shows the overview of a booklet """
-    committees = Committee.objects.all()
-    delegations = Delegation.objects.all()
-    latest_delegate = Delegate.objects.last()
+def booklet_show(request, slug):
+    """ This view shows the overview of a booklet """
+    booklet = get_object_or_404(Booklet, slug=slug)
+    committees = Committee.objects.filter(booklet=booklet)
+    delegations = Delegation.objects.filter(booklet=booklet)
 
-    context = {"committees": committees, "delegations": delegations, "latest_delegate": latest_delegate}
+    context = {"booklet": booklet, "committees": committees, "delegations": delegations}
     template = "jurycore/booklet_show.html"
 
     return render(request, template, context)
@@ -45,6 +45,7 @@ def delegate_create(request):
     }
     return render(request, template, context)
 
+
 @login_required()
 def committee_list(request):
     """ This view shows a list of all committees"""
@@ -53,6 +54,7 @@ def committee_list(request):
     context = {"committees": committees}
     template = "jurycore/committee_list.html"
     return render(request, template, context)
+
 
 @login_required()
 def committee_show(request, pk):
@@ -65,6 +67,7 @@ def committee_show(request, pk):
     template = "jurycore/committee_show.html"
     return render(request, template, context)
 
+
 @login_required()
 def delegation_show(request, pk):
     """ This view shows an individual delegation and all its delegates formatted for printing """
@@ -75,6 +78,7 @@ def delegation_show(request, pk):
     context = {"delegation": delegation, "delegates": delegates, "delegation_show": True}
     template = "jurycore/delegation_show.html"
     return render(request, template, context)
+
 
 @login_required()
 def printing_view(request):

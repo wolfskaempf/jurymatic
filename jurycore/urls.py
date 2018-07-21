@@ -7,6 +7,7 @@ from jurycore.views import protected_views
 app_name = 'jurycore'
 urlpatterns = [
     path('', protected_views.home, name='home'),
+    path('booklet/<str:slug>', protected_views.booklet_show, name='booklet_show'),
     path('delegate_create', protected_views.delegate_create, name='delegate_create'),
     path('committees', protected_views.committee_list, name='committee_list'),
     path('committee/<int:pk>/', protected_views.committee_show, name='committee_show'),
