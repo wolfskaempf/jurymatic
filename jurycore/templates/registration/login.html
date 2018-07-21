@@ -10,15 +10,21 @@
         <div class="row">
             <div class="col-sm-8 col-md-5 col-lg-3 center-block" style="float: none">
                 {% if form.errors %}
-                    <p>Your username and password didn't match. Please try again.</p>
+                    <div class="alert alert-danger">
+                        <p>Your username and password didn't match. Please try again.</p>
+                    </div>
                 {% endif %}
 
                 {% if next %}
                     {% if user.is_authenticated %}
-                        <p>Your account doesn't have access to this page. To proceed,
-                            please login with an account that has access.</p>
+                        <div class="alert alert-info">
+                            <p>Your account doesn't have access to this page. To proceed,
+                                please login with an account that has access.</p>
+                        </div>
                     {% else %}
-                        <p>Please login to see this page.</p>
+                        <div class="alert alert-info">
+                            <p>Please login to see this page.</p>
+                        </div>
                     {% endif %}
                 {% endif %}
 
