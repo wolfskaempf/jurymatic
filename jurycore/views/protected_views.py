@@ -9,12 +9,21 @@ from jurycore.models import Committee, Delegate, Delegation
 
 def home(request):
     """ This view shows some basic information to help the user understand the software """
+
+    context = {}
+    template = "jurycore/home.html"
+    return render(request, template, context)
+
+
+@login_required()
+def booklet_show(request):
+    """ Unfinished: This view shows the overview of a booklet """
     committees = Committee.objects.all()
     delegations = Delegation.objects.all()
     latest_delegate = Delegate.objects.last()
 
     context = {"committees": committees, "delegations": delegations, "latest_delegate": latest_delegate}
-    template = "jurycore/home.html"
+    template = "jurycore/booklet_show.html"
 
     return render(request, template, context)
 

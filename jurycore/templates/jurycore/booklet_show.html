@@ -1,0 +1,77 @@
+{% extends "jurycore/base.html" %}
+
+{% block header_title %}Home{% endblock %}
+{% block header_custom %}{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="jumbotron">
+            <div class="container">
+                <h1>Hello, my name is jurymatic!</h1>
+                <p>
+                    I will help you create a jury booklet for your session with no effort required.
+                </p>
+                <p>
+                <div class="btn-group-lg">
+                <a href="{% url 'jurycore:delegate_create' %}"
+                   class="btn btn-success btn-lg">Add delegate</a>
+                    <a href="https://www.youtube.com/playlist?list=PLWqZWxSNRmk83SRJ2hx3tqCu2GrglyhFW"
+                       class="btn btn-primary btn-lg" target="_blank">How to use me</a>
+
+                </div>
+                </p>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4 col-xs-12">
+                <h2>Committees</h2>
+                {% if committees %}
+                    {% for committee in committees %}
+                        <ul>
+                            <li><a href="{% url 'jurycore:committee_show' committee.pk %}">{{ committee.name }}</a></li>
+                        </ul>
+                    {% endfor %}
+                {% else %}
+                    <p>
+                        You have not added any committees yet.
+                    </p>
+                {% endif %}
+            </div>
+
+            <div class="col-sm-4 col-xs-12">
+                <h2>Delegations</h2>
+
+                {% if delegations %}
+                    {% for delegation in delegations %}
+                        <ul>
+                            <li><a href="{% url 'jurycore:delegation_show' delegation.pk %}">{{ delegation.name }}</a>
+                            </li>
+                        </ul>
+                    {% endfor %}
+                {% else %}
+                    <p>
+                        You have not added any delegations yet.
+                    </p>
+                {% endif %}
+            </div>
+
+            {% if latest_delegate %}
+                <div class="col-sm-4 col-xs-12">
+                    <h2>Latest Delegate</h2>
+                    <p>
+                        {{ latest_delegate.name }} ({{ latest_delegate.committee.name }})
+                        <br>
+                        {{ latest_delegate.delegation }}
+                    </p>
+                    <img src="{{ latest_delegate.photo.url }}" alt="Photo of {{ latest_delegate.name }}"
+                         class="img-responsive img-rounded img-sm"/>
+                </div>
+            {% endif %}
+        </div>
+
+
+    </div>
+{% endblock %}
