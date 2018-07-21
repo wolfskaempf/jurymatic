@@ -47,6 +47,10 @@ AUTHENTICATION_BACKENDS = (
     'guardian.backends.ObjectPermissionBackend',
 )
 
+LOGIN_URL = "/accounts/login"
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"
+
 ROOT_URLCONF = 'jurymatic.urls'
 
 TEMPLATES = [

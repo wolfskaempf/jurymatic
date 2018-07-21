@@ -19,7 +19,7 @@ def home(request):
 
     return render(request, template, context)
 
-@login_required(login_url="/admin/")
+@login_required()
 def delegate_create(request):
     """This view creates delegates"""
     form = DelegateForm()
