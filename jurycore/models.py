@@ -2,17 +2,24 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.db.models import CASCADE;
+from django.utils.text import slugify
 
+from jurycore.helpers.slug_helper import unique_slugify
 
-# Create your models here.
 
 class Booklet(models.Model):
     session_name = models.CharField(max_length=100)
     author_name = models.CharField(max_length=100)
     author_email = models.EmailField()
+    slug = models.SlugField(unique=True, blank=True)
 
     def __str__(self):
         return self.session_name
+
+    def save(self, *args, **kwargs):
+        slug_str = slugify(self.session_name)
+        unique_slugify(self, slug_str)
+        super(Booklet, self).save(*args, **kwargs)
 
     class Meta:
         permissions = (
