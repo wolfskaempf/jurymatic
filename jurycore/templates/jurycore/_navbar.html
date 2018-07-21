@@ -17,9 +17,18 @@
             <!--/.nav navbar-nav-->
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="{% url 'jurycore:delegate_create' %}">Add delegate</a></li>
-                <li><a href="{% url 'jurycore:printing_view' %}">Printing View</a></li>
-                <li><a href="/admin/">Go to Admin</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'jurycore:delegate_create' %}">Add delegate</a></li>
+                    <li><a href="{% url 'jurycore:printing_view' %}">Printing View</a></li>
+                {% endif %}
+                {% if user.is_staff %}
+                    <li><a href="/admin/">Go to Admin</a></li>
+                {% endif %}
+                {% if user.is_authenticated == False %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                {% else %}
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                {% endif %}
             </ul>
 
 
