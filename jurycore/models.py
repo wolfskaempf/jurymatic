@@ -6,6 +6,15 @@ from django.db.models import CASCADE;
 
 # Create your models here.
 
+class Booklet(models.Model):
+    session_name = models.CharField(max_length=100)
+    author_name = models.CharField(max_length=100)
+    author_email = models.EmailField()
+
+    def __str__(self):
+        return self.session_name
+
+
 class Delegate(models.Model):
     name = models.CharField(max_length=100)
     photo = models.ImageField(upload_to='delegate_pictures/')
