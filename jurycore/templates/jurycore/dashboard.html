@@ -7,6 +7,9 @@
 {% block content %}
     <div class="container">
         <h1>{{ user.username }}'s jurymatic</h1>
+        <div class="btn-group" role="group" aria-label="Actions">
+            <button type="button" class="btn btn-primary">New booklet</button>
+        </div>
         <h2>Your booklets</h2>
         {% if booklets %}
             {% for booklet in booklets %}
