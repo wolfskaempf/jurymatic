@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 # Create your views here.
+from guardian.decorators import permission_required_or_403
 from guardian.shortcuts import get_objects_for_user
 
 from jurycore.forms import DelegateForm
@@ -29,6 +30,7 @@ def dashboard(request):
 
 
 @login_required()
+@permission_required_or_403('view_booklet', (Booklet, 'slug', 'slug'))
 def booklet_show(request, slug):
     """ This view shows the overview of a booklet """
     booklet = get_object_or_404(Booklet, slug=slug)
@@ -60,9 +62,11 @@ def delegate_create(request):
 
 
 @login_required()
-def committee_list(request):
+@permission_required_or_403('view_booklet', (Booklet, 'slug', 'booklet'))
+def committee_list(request, booklet):
     """ This view shows a list of all committees"""
-    committees = Committee.objects.all().order_by("name")
+    booklet = get_object_or_404(Booklet, slug=booklet)
+    committees = Committee.objects.filter(booklet=booklet).order_by("name")
 
     context = {"committees": committees}
     template = "jurycore/committee_list.html"
