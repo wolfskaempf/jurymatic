@@ -7,7 +7,6 @@ from jurycore.forms import DelegateForm
 from jurycore.models import Committee, Delegate, Delegation
 
 
-
 def home(request):
     """ This view shows some basic information to help the user understand the software """
     committees = Committee.objects.all()
@@ -18,6 +17,7 @@ def home(request):
     template = "jurycore/home.html"
 
     return render(request, template, context)
+
 
 @login_required()
 def delegate_create(request):
@@ -36,7 +36,7 @@ def delegate_create(request):
     }
     return render(request, template, context)
 
-
+@login_required()
 def committee_list(request):
     """ This view shows a list of all committees"""
     committees = Committee.objects.all().order_by("name")
@@ -45,7 +45,7 @@ def committee_list(request):
     template = "jurycore/committee_list.html"
     return render(request, template, context)
 
-
+@login_required()
 def committee_show(request, pk):
     """ This view shows an individual committee and all its delegates formatted for printing """
     committee = Committee.objects.get(pk=pk)
@@ -56,7 +56,7 @@ def committee_show(request, pk):
     template = "jurycore/committee_show.html"
     return render(request, template, context)
 
-
+@login_required()
 def delegation_show(request, pk):
     """ This view shows an individual delegation and all its delegates formatted for printing """
     delegation = Delegation.objects.get(pk=pk)
@@ -67,7 +67,7 @@ def delegation_show(request, pk):
     template = "jurycore/delegation_show.html"
     return render(request, template, context)
 
-
+@login_required()
 def printing_view(request):
     """ This view lists all committees and all delegates at the same time, formatted for printing """
     committees = Committee.objects.all().order_by("name")
