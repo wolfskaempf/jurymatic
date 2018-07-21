@@ -2,16 +2,16 @@ from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
 
-from . import views
+from jurycore.views import protected_views
 
 app_name = 'jurycore'
 urlpatterns = [
-    path('', views.home, name='home'),
-    path('delegate_create', views.delegate_create, name='delegate_create'),
-    path('committees', views.committee_list, name='committee_list'),
-    path('committee/<int:pk>/', views.committee_show, name='committee_show'),
-    path('delegation/<int:pk>/', views.delegation_show, name='delegation_show'),
-    path('print/', views.printing_view, name='printing_view'),
+    path('', protected_views.home, name='home'),
+    path('delegate_create', protected_views.delegate_create, name='delegate_create'),
+    path('committees', protected_views.committee_list, name='committee_list'),
+    path('committee/<int:pk>/', protected_views.committee_show, name='committee_show'),
+    path('delegation/<int:pk>/', protected_views.delegation_show, name='delegation_show'),
+    path('print/', protected_views.printing_view, name='printing_view'),
 ]
 
 if settings.DEBUG is True:

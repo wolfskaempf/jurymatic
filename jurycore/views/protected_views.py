@@ -1,9 +1,11 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
 # Create your views here.
-from .forms import DelegateForm
-from .models import Committee, Delegate, Delegation
+from jurycore.forms import DelegateForm
+from jurycore.models import Committee, Delegate, Delegation
+
 
 
 def home(request):
@@ -14,9 +16,10 @@ def home(request):
 
     context = {"committees": committees, "delegations": delegations, "latest_delegate": latest_delegate}
     template = "jurycore/home.html"
+
     return render(request, template, context)
 
-
+@login_required(login_url="/admin/")
 def delegate_create(request):
     """This view creates delegates"""
     form = DelegateForm()

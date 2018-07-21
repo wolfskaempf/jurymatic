@@ -14,6 +14,11 @@ class Booklet(models.Model):
     def __str__(self):
         return self.session_name
 
+    class Meta:
+        permissions = (
+            ('view_booklet', 'Can view booklet'),
+        )
+
 
 class Delegate(models.Model):
     name = models.CharField(max_length=100)
@@ -25,6 +30,11 @@ class Delegate(models.Model):
     def __str__(self):
         return "(%s, %s)" % (self.committee.name, self.delegation.name)
 
+    class Meta:
+        permissions = (
+            ('view_delegate', 'Can view delegate'),
+        )
+
 
 class Delegation(models.Model):
     name = models.CharField(max_length=100)
@@ -33,9 +43,19 @@ class Delegation(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        permissions = (
+            ('view_delegation', 'Can view delegation'),
+        )
+
 
 class Committee(models.Model):
     name = models.CharField(max_length=100)
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        permissions = (
+            ('view_committee', 'Can view committee'),
+        )
