@@ -14,6 +14,7 @@ urlpatterns = [
     path('booklet/<slug:slug>/', booklets.booklet_show, name='booklet_show'),
     path('booklet/<slug:slug>/update/', booklets.booklet_update, name='booklet_update'),
     path('booklet/<slug:slug>/delete/', booklets.booklet_delete, name='booklet_delete'),
+    path('booklet/<slug:booklet>/delegates/', delegates.delegate_list, name='delegate_list'),
     path('booklet/<slug:booklet>/delegate/create/', delegates.delegate_create, name='delegate_create'),
     path('booklet/<slug:booklet>/committees/', committees.committee_list, name='committee_list'),
     path('booklet/<slug:booklet>/committee/<uuid:uuid>/', committees.committee_show, name='committee_show'),

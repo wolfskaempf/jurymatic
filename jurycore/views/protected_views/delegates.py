@@ -4,7 +4,19 @@ from django.shortcuts import render, get_object_or_404
 from guardian.decorators import permission_required_or_403
 
 from jurycore.forms import DelegateForm
-from jurycore.models import Booklet, Committee, Delegation
+from jurycore.models import Booklet, Committee, Delegation, Delegate
+
+
+@login_required()
+@permission_required_or_403('view_booklet', (Booklet, 'slug', 'booklet'))
+def delegate_list(request, booklet):
+    """ This view shows a list of all delegates of a given booklet"""
+    booklet = get_object_or_404(Booklet, slug=booklet)
+    delegates = Delegate.objects.filter(booklet=booklet).order_by("name")
+
+    context = {"booklet": booklet, "delegates": delegates}
+    template = "jurycore/delegates/delegate_list.html"
+    return render(request, template, context)
 
 
 @login_required()

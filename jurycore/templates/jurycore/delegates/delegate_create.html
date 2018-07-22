@@ -9,7 +9,7 @@
     <div class="container">
         <h1>Add delegate</h1>
         <div class="btn-group" style="margin-bottom: 1em">
-            <a class="btn btn-default" href="{% url 'jurycore:booklet_show' booklet.slug %}">Go back</a>
+            <a class="btn btn-default" href="{% url 'jurycore:delegate_list' booklet.slug %}">Go back</a>
         </div>
         {% if messages %}
             <div class="alert alert-success" role="alert">

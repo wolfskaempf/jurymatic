@@ -16,7 +16,7 @@
         <h1>{{ booklet.session_name }}</h1>
         <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with creation actions">
             <div class="btn-group mr-2" role="group" aria-label="Management actions">
-                <button type="button" class="btn btn-success">Manage delegates</button>
+                <a class="btn btn-success" href="{% url 'jurycore:delegate_list' booklet.slug %}">Manage delegates</a>
                 <a class="btn btn-success" href="{% url 'jurycore:committee_list' booklet.slug %}">Manage committees</a>
                 <a class="btn btn-success" href="{% url 'jurycore:delegation_list' booklet.slug %}">Manage
                     delegations</a>

@@ -1,0 +1,51 @@
+{% extends "jurycore/base.html" %}
+
+{% block header_title %}Delegate List{% endblock %}
+{% block header_custom %}{% endblock %}
+
+
+
+{% block content %}
+    <div class="container">
+        <h1>{{ booklet.session_name }}</h1>
+        {% if messages %}
+            <div class="alert alert-success" role="alert">
+                {% for message in messages %}
+                    <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with actions">
+            <div class="btn-group mr-2" role="group" aria-label="Booklet actions">
+                <a class="btn btn-default" href="{% url 'jurycore:booklet_show' booklet.slug %}">Go back</a>
+            </div>
+            <div class="btn-group mr-2" role="group" aria-label="Delegate creation actions">
+                <a class="btn btn-success" href="{% url 'jurycore:delegate_create' booklet.slug %}">Create
+                    delegate</a>
+            </div>
+        </div>
+        <h2>Delegates</h2>
+
+        {% if delegates %}
+            {% for delegate in delegates %}
+                <div class="media">
+                    <img height="250" width="250" style="object-fit:cover" class="mr-3" src="{{ delegate.photo.url }}" alt="Photo of {{ delegate.name }}">
+                    <div class="media-body">
+                        <h5 class="mt-0">{{ delegate }}</h5>
+                        <div class="btn-group btn-group-xs">
+                        <a href="{% url 'jurycore:delegate_list' booklet.slug %}"
+                           class="btn btn-xs btn-info">Update</a>
+                        <a href="{% url 'jurycore:delegate_list' booklet.slug %}"
+                           class="btn btn-xs btn-danger">Delete</a>
+                    </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>
+                You have not added any delegates yet.
+            </p>
+        {% endif %}
+
+    </div>
+{% endblock %}
