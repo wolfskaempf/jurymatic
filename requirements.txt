@@ -1,7 +1,10 @@
 Django==2.0.7
+django-appconf==1.0.2
 django-colorful==1.2
 django-guardian==1.4.9
+django-imagekit==4.0.2
 django-widget-tweaks==1.4.2
+pilkit==2.0
 Pillow==5.2.0
 pytz==2018.5
 six==1.11.0
