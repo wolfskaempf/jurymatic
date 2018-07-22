@@ -5,6 +5,7 @@ Django settings for jurymatic project.
 import os
 
 import django_heroku
+import raven
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -35,6 +36,7 @@ INSTALLED_APPS = [
     'imagekit',  # https://github.com/matthewwithanm/django-imagekit
     'colorful',  # https://github.com/charettes/django-colorful
     'storages',  # https://github.com/jschneier/django-storages
+    'raven.contrib.django.raven_compat',
 ]
 
 MIDDLEWARE = [
@@ -136,6 +138,13 @@ AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
 AWS_STORAGE_BUCKET_NAME = os.environ['S3_BUCKET_NAME']
 
 AWS_S3_REGION_NAME = os.environ['S3_REGION']  # "eu-central-1"
+
+RAVEN_CONFIG = {
+    'dsn': 'https://39f5bb6a1ef642f7871f39de50c0331c:43223f42182049dbb3f30379fdca7103@sentry.io/1247824',
+    # If you are using git, you can also automatically configure the
+    # release based on the git info.
+    'release': raven.fetch_git_sha(BASE_DIR),
+}
 
 # Configure Django App for Heroku.
 django_heroku.settings(locals())
