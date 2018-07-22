@@ -1,10 +1,12 @@
 from __future__ import unicode_literals
 
+import os
 import uuid as uuid
 
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import CASCADE, UUIDField
+from django.dispatch import receiver
 from django.utils.text import slugify
 
 from jurycore.helpers.slug_helper import unique_slugify
@@ -45,6 +47,38 @@ class Delegate(models.Model):
         permissions = (
             ('view_delegate', 'Can view delegate'),
         )
+
+
+@receiver(models.signals.post_delete, sender=Delegate)
+def auto_delete_file_on_delete(sender, instance, **kwargs):
+    """
+    Deletes file from filesystem
+    when corresponding Delegate object is deleted.
+    """
+    if instance.photo:
+        if os.path.isfile(instance.photo.path):
+            os.remove(instance.photo.path)
+
+
+@receiver(models.signals.pre_save, sender=Delegate)
+def auto_delete_file_on_change(sender, instance, **kwargs):
+    """
+    Deletes old file from filesystem
+    when corresponding Delegate object is updated
+    with new file.
+    """
+    if not instance.pk:
+        return False
+
+    try:
+        old_file = Delegate.objects.get(pk=instance.pk).photo
+    except Delegate.DoesNotExist:
+        return False
+
+    new_file = instance.photo
+    if not old_file == new_file:
+        if os.path.isfile(old_file.path):
+            os.remove(old_file.path)
 
 
 class Delegation(models.Model):
