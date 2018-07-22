@@ -143,7 +143,7 @@ RAVEN_CONFIG = {
     'dsn': 'https://39f5bb6a1ef642f7871f39de50c0331c:43223f42182049dbb3f30379fdca7103@sentry.io/1247824',
     # If you are using git, you can also automatically configure the
     # release based on the git info.
-    'release': raven.fetch_git_sha(BASE_DIR),
+    'release': '1',
 }
 
 # Configure Django App for Heroku.
