@@ -94,9 +94,11 @@ def delegation_show(request, booklet, uuid):
 
 
 @login_required()
-def printing_view(request):
+@permission_required_or_403('view_booklet', (Booklet, 'slug', 'booklet'))
+def printing_view(request, booklet):
     """ This view lists all committees and all delegates at the same time, formatted for printing """
-    committees = Committee.objects.all().order_by("name")
+    booklet = Booklet.objects.get(slug=booklet)
+    committees = Committee.objects.filter(booklet=booklet).order_by("name")
 
     context = {"committees": committees}
     template = "jurycore/printing_view.html"

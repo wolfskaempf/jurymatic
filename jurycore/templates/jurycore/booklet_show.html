@@ -14,7 +14,7 @@
                 <button type="button" class="btn btn-success">Manage delegations</button>
             </div>
             <div class="btn-group mr-2" role="group" aria-label="Toolbar with booklet options">
-                <a href="{% url 'jurycore:printing_view' %}">
+                <a href="{% url 'jurycore:printing_view' booklet.slug %}">
                     <button type="button" class="btn btn-info">Print this booklet</button>
                 </a>
             </div>

@@ -14,7 +14,7 @@ urlpatterns = [
     path('booklet/<slug:booklet>/committees/', protected_views.committee_list, name='committee_list'),
     path('booklet/<slug:booklet>/committee/<uuid:uuid>/', protected_views.committee_show, name='committee_show'),
     path('booklet/<slug:booklet>/delegation/<uuid:uuid>/', protected_views.delegation_show, name='delegation_show'),
-    path('print/', protected_views.printing_view, name='printing_view'),
+    path('booklet/<slug:booklet>/print/', protected_views.printing_view, name='printing_view'),
 ]
 
 if settings.DEBUG is True:
