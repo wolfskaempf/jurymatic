@@ -9,6 +9,7 @@ app_name = 'jurycore'
 urlpatterns = [
     path('', jurycore.views.public_views.home, name='home'),
     path('dashboard/', protected_views.dashboard, name='dashboard'),
+    path('booklet_create/', protected_views.booklet_create, name='booklet_create'),
     path('booklet/<slug:slug>/', protected_views.booklet_show, name='booklet_show'),
     path('delegate_create/', protected_views.delegate_create, name='delegate_create'),
     path('booklet/<slug:booklet>/committees/', protected_views.committee_list, name='committee_list'),

@@ -1,11 +1,13 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 # Create your views here.
+from django.urls import reverse
 from guardian.decorators import permission_required_or_403
-from guardian.shortcuts import get_objects_for_user
+from guardian.shortcuts import get_objects_for_user, assign_perm
 
-from jurycore.forms import DelegateForm
+from jurycore.forms import DelegateForm, BookletForm
 from jurycore.models import Committee, Delegate, Delegation, Booklet
 
 
@@ -17,6 +19,26 @@ def dashboard(request):
 
     context = {"booklets": booklets}
     template = "jurycore/dashboard.html"
+    return render(request, template, context)
+
+
+@login_required()
+def booklet_create(request):
+    """ This view creates booklets """
+    form = BookletForm()
+    if request.method == "POST":
+        form = BookletForm(request.POST)
+        if form.is_valid():
+            booklet = Booklet(session_name=form.cleaned_data['session_name'], created_by=request.user)
+            booklet.save()
+            assign_perm('view_booklet', request.user, booklet)
+            assign_perm('change_booklet', request.user, booklet)
+            assign_perm('delete_booklet', request.user, booklet)
+            messages.success(request, form.cleaned_data['session_name'] + ' has been created successfully.')
+            return HttpResponseRedirect(reverse('jurycore:booklet_show', args=[booklet.slug]))
+
+    template = "jurycore/booklet_create.html"
+    context = {"form": form}
     return render(request, template, context)
 
 
