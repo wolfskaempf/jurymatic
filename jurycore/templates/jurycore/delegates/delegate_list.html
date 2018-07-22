@@ -29,7 +29,7 @@
         {% if delegates %}
             {% for delegate in delegates %}
                 <div class="media">
-                    <img height="250" width="250" style="object-fit:cover" class="mr-3" src="{{ delegate.photo.url }}" alt="Photo of {{ delegate.name }}">
+                    <img height="250" width="250" style="object-fit:cover" class="mr-3" src="{{ delegate.photo_thumbnail.url }}" alt="Photo of {{ delegate.name }}">
                     <div class="media-body">
                         <h5 class="mt-0">{{ delegate }}</h5>
                         <div class="btn-group btn-group-xs">

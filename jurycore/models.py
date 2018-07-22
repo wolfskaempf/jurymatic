@@ -10,6 +10,8 @@ from django.db import models
 from django.db.models import CASCADE, UUIDField
 from django.dispatch import receiver
 from django.utils.text import slugify
+from imagekit.models import ImageSpecField
+from pilkit.processors import ResizeToFill
 
 from jurycore.helpers.slug_helper import unique_slugify
 
@@ -42,6 +44,14 @@ class Delegate(models.Model):
         return os.path.join("delegate_pictures", self.booklet.slug, "%s%s" % (self.uuid, pathlib.Path(filename).suffix))
 
     photo = models.ImageField(upload_to=get_upload_path)
+    photo_thumbnail = ImageSpecField(source='photo',
+                                     processors=[ResizeToFill(250, 250)],
+                                     format='JPEG',
+                                     options={'quality': 60})
+    photo_print = ImageSpecField(source='photo',
+                                 processors=[ResizeToFill(300, 400)],
+                                 format='JPEG',
+                                 options={'quality': 100})
     committee = models.ForeignKey("Committee", on_delete=CASCADE)
     delegation = models.ForeignKey("Delegation", on_delete=CASCADE)
     remarks = models.TextField(blank=True)
