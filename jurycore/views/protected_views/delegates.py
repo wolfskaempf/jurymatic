@@ -69,6 +69,7 @@ def delegate_update(request, booklet, uuid):
     context = {"form": form, "booklet": booklet}
     return render(request, template, context)
 
+
 @login_required()
 @permission_required_or_403('change_booklet', (Booklet, 'slug', 'booklet'))
 def delegate_delete(request, booklet, uuid):
