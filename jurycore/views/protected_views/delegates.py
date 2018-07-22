@@ -21,3 +21,4 @@ def delegate_create(request):
         "form": form
     }
     return render(request, template, context)
+

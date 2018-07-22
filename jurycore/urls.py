@@ -12,6 +12,7 @@ urlpatterns = [
     path('dashboard/', overview.dashboard, name='dashboard'),
     path('booklet_create/', booklets.booklet_create, name='booklet_create'),
     path('booklet/<slug:slug>/', booklets.booklet_show, name='booklet_show'),
+    path('booklet/<slug:slug>/delete/', booklets.booklet_delete, name='booklet_delete'),
     path('delegate_create/', delegates.delegate_create, name='delegate_create'),
     path('booklet/<slug:booklet>/committees/', committees.committee_list, name='committee_list'),
     path('booklet/<slug:booklet>/committee/<uuid:uuid>/', committees.committee_show, name='committee_show'),

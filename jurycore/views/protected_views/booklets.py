@@ -42,3 +42,19 @@ def booklet_show(request, slug):
     template = "jurycore/booklets/booklet_show.html"
 
     return render(request, template, context)
+
+@login_required()
+@permission_required_or_403('delete_booklet', (Booklet, 'slug', 'slug'))
+def booklet_delete(request, slug):
+    """ This view deletes the booklet on POST """
+    booklet = get_object_or_404(Booklet, slug=slug)
+
+    if request.method == "POST":
+        booklet.delete()
+        messages.success(request, booklet.session_name + ' has been deleted successfully.')
+        return HttpResponseRedirect(reverse('jurycore:dashboard'))
+
+    context = {"booklet": booklet}
+    template = "jurycore/booklets/booklet_delete.html"
+
+    return render(request, template, context)

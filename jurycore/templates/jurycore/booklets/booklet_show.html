@@ -26,7 +26,7 @@
                 </a>
             </div>
             <div class="btn-group mr-2" role="group" aria-label="Toolbar with booklet options">
-                <button type="button" class="btn btn-danger">Delete this booklet</button>
+                <a href="{% url 'jurycore:booklet_delete' booklet.slug %}"><button type="button" class="btn btn-danger">Delete this booklet</button></a>
             </div>
         </div>
         <div class="row">

@@ -1,0 +1,16 @@
+{% extends "jurycore/base.html" %}
+
+{% block header_title %}Delete Booklet{% endblock %}
+{% block header_custom %}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Delete {{ booklet.session_name }}?</h1>
+        <form action='.' method='POST'>{% csrf_token %}
+            <p>Are you sure that you want to delete the booklet {{ booklet.session_name }}? This will delete all delegates, committees and delegations as well.</p>
+            <p><input class="btn btn-danger" type='submit' value='Yes, delete {{ booklet.session_name }}'/> <a class="btn btn-default" href='{% url 'jurycore:booklet_show' booklet.slug %}'>Cancel</a></p>
+
+        </form>
+    </div>
+
+{% endblock %}
