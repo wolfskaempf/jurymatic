@@ -1,0 +1,42 @@
+{% extends "jurycore/base.html" %}
+
+{% block header_title %}Delegation List{% endblock %}
+{% block header_custom %}{% endblock %}
+
+
+
+{% block content %}
+    <div class="container">
+        <h1>{{ booklet.session_name }}</h1>
+        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with actions">
+            <div class="btn-group mr-2" role="group" aria-label="Booklet actions">
+                <a class="btn btn-default" href="{% url 'jurycore:booklet_show' booklet.slug %}">Go back</a>
+            </div>
+            <div class="btn-group mr-2" role="group" aria-label="Delegation creation actions">
+                <a class="btn btn-success" href="{% url 'jurycore:delegation_create' booklet.slug %}">Create
+                    delegation</a>
+            </div>
+        </div>
+        <h2>Delegations</h2>
+
+        {% if delegations %}
+            {% for delegation in delegations %}
+                <ul>
+                    <li>
+                        <a href="{% url 'jurycore:delegation_show' booklet.slug delegation.uuid %}">{{ delegation.name }}</a>
+                        <div class="btn-group btn-group-xs">
+                            <a href="{% url 'jurycore:delegation_show' booklet.slug delegation.uuid %}" class="btn btn-xs btn-primary">Printing view</a>
+                            <a href="{% url 'jurycore:delegation_show' booklet.slug delegation.uuid %}" class="btn btn-xs btn-info">Rename</a>
+                            <a href="{% url 'jurycore:delegation_show' booklet.slug delegation.uuid %}" class="btn btn-xs btn-danger">Delete</a>
+                        </div>
+                    </li>
+                </ul>
+            {% endfor %}
+        {% else %}
+            <p>
+                You have not added any delegations yet.
+            </p>
+        {% endif %}
+
+    </div>
+{% endblock %}

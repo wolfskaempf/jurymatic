@@ -6,6 +6,16 @@ from guardian.decorators import permission_required_or_403
 from jurycore.forms import DelegationForm
 from jurycore.models import Booklet, Delegation, Delegate
 
+@login_required()
+@permission_required_or_403('view_booklet', (Booklet, 'slug', 'booklet'))
+def delegation_list(request, booklet):
+    """ This view shows a list of all delegations of a given booklet"""
+    booklet = get_object_or_404(Booklet, slug=booklet)
+    delegations = Delegation.objects.filter(booklet=booklet).order_by("name")
+
+    context = {"booklet": booklet, "delegations": delegations}
+    template = "jurycore/delegations/delegation_list.html"
+    return render(request, template, context)
 
 @login_required()
 @permission_required_or_403('view_booklet', (Booklet, 'slug', 'booklet'))
