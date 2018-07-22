@@ -135,7 +135,7 @@ AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
 
 AWS_STORAGE_BUCKET_NAME = os.environ['S3_BUCKET_NAME']
 
-AWS_S3_REGION_NAME = os.environ['S3_BUCKET_NAME']  # "eu-central-1"
+AWS_S3_REGION_NAME = os.environ['S3_REGION']  # "eu-central-1"
 
 # Configure Django App for Heroku.
 django_heroku.settings(locals())
