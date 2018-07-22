@@ -1,6 +1,8 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseForbidden, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
+from django.urls import reverse
 from guardian.decorators import permission_required_or_403
 
 from jurycore.forms import CommitteeForm
@@ -33,6 +35,7 @@ def committee_show(request, booklet, uuid):
     template = "jurycore/committees/committee_show.html"
     return render(request, template, context)
 
+
 @login_required()
 @permission_required_or_403('change_booklet', (Booklet, 'slug', 'booklet'))
 def committee_create(request, booklet):
@@ -49,4 +52,25 @@ def committee_create(request, booklet):
 
     template = "jurycore/committees/committee_create.html"
     context = {"form": form, "booklet": booklet}
+    return render(request, template, context)
+
+
+@login_required()
+@permission_required_or_403('change_booklet', (Booklet, 'slug', 'booklet'))
+def committee_delete(request, booklet, uuid):
+    """ This view deletes the committee on POST """
+    booklet = get_object_or_404(Booklet, slug=booklet)
+    committee = get_object_or_404(Committee, uuid=uuid)
+
+    if not committee.booklet == booklet:
+        return HttpResponseForbidden()
+
+    if request.method == "POST":
+        committee.delete()
+        messages.success(request, booklet.session_name + ' has been deleted successfully.')
+        return HttpResponseRedirect(reverse('jurycore:committee_list', args=[booklet.slug]))
+
+    context = {"booklet": booklet, "committee": committee}
+    template = "jurycore/committees/committee_delete.html"
+
     return render(request, template, context)
