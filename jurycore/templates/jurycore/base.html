@@ -32,9 +32,14 @@
 
 <body>
 
-{% block navbar %}{% include "jurycore/_navbar.html" %}{% endblock %} {% block content %}
+{% block navbar %}
+    {% include "jurycore/_navbar.html" %}{% endblock %}
+{% block content %}
     <!-- To learn more about what this does, visit https://docs.djangoproject.com/en/dev/topics/templates/ -->
-{% endblock %} {% block footer %} {% include "jurycore/_footer.html" %} {% endblock %}
+{% endblock %}
+{% block footer %}
+    {% include "jurycore/_footer.html" %}
+{% endblock %}
 
 <!-- Bootstrap core JavaScript
   ================================================== -->

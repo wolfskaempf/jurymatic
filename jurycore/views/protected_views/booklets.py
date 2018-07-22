@@ -25,7 +25,7 @@ def booklet_create(request):
             messages.success(request, form.cleaned_data['session_name'] + ' has been created successfully.')
             return HttpResponseRedirect(reverse('jurycore:booklet_show', args=[booklet.slug]))
 
-    template = "jurycore/booklet_create.html"
+    template = "jurycore/booklets/booklet_create.html"
     context = {"form": form}
     return render(request, template, context)
 
@@ -39,6 +39,6 @@ def booklet_show(request, slug):
     delegations = Delegation.objects.filter(booklet=booklet)
 
     context = {"booklet": booklet, "committees": committees, "delegations": delegations}
-    template = "jurycore/booklet_show.html"
+    template = "jurycore/booklets/booklet_show.html"
 
     return render(request, template, context)

@@ -13,7 +13,7 @@ def committee_list(request, booklet):
     committees = Committee.objects.filter(booklet=booklet).order_by("name")
 
     context = {"committees": committees}
-    template = "jurycore/committee_list.html"
+    template = "jurycore/committees/committee_list.html"
     return render(request, template, context)
 
 
@@ -28,5 +28,5 @@ def committee_show(request, booklet, uuid):
     delegates = Delegate.objects.filter(committee=committee)
 
     context = {"committee": committee, "delegates": delegates}
-    template = "jurycore/committee_show.html"
+    template = "jurycore/committees/committee_show.html"
     return render(request, template, context)

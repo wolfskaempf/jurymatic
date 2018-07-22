@@ -15,5 +15,5 @@ def delegation_show(request, booklet, uuid):
     delegates = Delegate.objects.filter(delegation=delegation).order_by("committee__name")
 
     context = {"delegation": delegation, "delegates": delegates, "delegation_show": True}
-    template = "jurycore/delegation_show.html"
+    template = "jurycore/delegations/delegation_show.html"
     return render(request, template, context)

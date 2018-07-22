@@ -16,7 +16,7 @@ def delegate_create(request):
             messages.success(request, form.cleaned_data['name'] + ' has been added successfully.')
             form = DelegateForm()
 
-    template = "jurycore/delegate_create.html"
+    template = "jurycore/delegates/delegate_create.html"
     context = {
         "form": form
     }
