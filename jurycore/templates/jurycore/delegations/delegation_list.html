@@ -8,6 +8,13 @@
 {% block content %}
     <div class="container">
         <h1>{{ booklet.session_name }}</h1>
+        {% if messages %}
+            <div class="alert alert-success" role="alert">
+                {% for message in messages %}
+                    <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
         <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with actions">
             <div class="btn-group mr-2" role="group" aria-label="Booklet actions">
                 <a class="btn btn-default" href="{% url 'jurycore:booklet_show' booklet.slug %}">Go back</a>
@@ -26,7 +33,7 @@
                         <a href="{% url 'jurycore:delegation_show' booklet.slug delegation.uuid %}">{{ delegation.name }}</a>
                         <div class="btn-group btn-group-xs">
                             <a href="{% url 'jurycore:delegation_show' booklet.slug delegation.uuid %}" class="btn btn-xs btn-primary">Printing view</a>
-                            <a href="{% url 'jurycore:delegation_show' booklet.slug delegation.uuid %}" class="btn btn-xs btn-info">Rename</a>
+                            <a href="{% url 'jurycore:delegation_update' booklet.slug delegation.uuid %}" class="btn btn-xs btn-info">Update</a>
                             <a href="{% url 'jurycore:delegation_show' booklet.slug delegation.uuid %}" class="btn btn-xs btn-danger">Delete</a>
                         </div>
                     </li>

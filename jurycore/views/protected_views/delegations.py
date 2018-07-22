@@ -1,6 +1,8 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseForbidden, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
+from django.urls import reverse
 from guardian.decorators import permission_required_or_403
 
 from jurycore.forms import DelegationForm
@@ -51,30 +53,30 @@ def delegation_create(request, booklet):
 
 @login_required()
 @permission_required_or_403('change_booklet', (Booklet, 'slug', 'booklet'))
-def committee_update(request, booklet, uuid):
-    """This view creates delegates"""
+def delegation_update(request, booklet, uuid):
+    """This view updates delegations"""
     booklet = get_object_or_404(Booklet, slug=booklet)
-    committee = get_object_or_404(Committee, uuid=uuid)
+    delegation = get_object_or_404(Delegation, uuid=uuid)
 
-    if not committee.booklet == booklet:
+    if not delegation.booklet == booklet:
         return HttpResponseForbidden()
 
-    form = CommitteeForm(instance=committee)
+    form = DelegationForm(instance=delegation)
     if request.method == "POST":
-        form = CommitteeForm(request.POST, instance=committee)
+        form = DelegationForm(request.POST, instance=delegation)
         if form.is_valid():
             form.save()
-            messages.success(request, form.cleaned_data['name'] + ' has been renamed successfully.')
-            return HttpResponseRedirect(reverse('jurycore:committee_list', args=[booklet.slug]))
+            messages.success(request, form.cleaned_data['name'] + ' has been updated successfully.')
+            return HttpResponseRedirect(reverse('jurycore:delegation_list', args=[booklet.slug]))
 
-    template = "jurycore/committees/committee_update.html"
+    template = "jurycore/delegations/delegation_update.html"
     context = {"form": form, "booklet": booklet}
     return render(request, template, context)
 
 
 @login_required()
 @permission_required_or_403('change_booklet', (Booklet, 'slug', 'booklet'))
-def committee_delete(request, booklet, uuid):
+def delegation_delete(request, booklet, uuid):
     """ This view deletes the committee on POST """
     booklet = get_object_or_404(Booklet, slug=booklet)
     committee = get_object_or_404(Committee, uuid=uuid)

@@ -8,6 +8,13 @@
 {% block content %}
     <div class="container">
         <h1>{{ booklet.session_name }}</h1>
+        {% if messages %}
+            <div class="alert alert-success" role="alert">
+                {% for message in messages %}
+                    <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
         <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with actions">
             <div class="btn-group mr-2" role="group" aria-label="Booklet actions">
                 <a class="btn btn-default" href="{% url 'jurycore:booklet_show' booklet.slug %}">Go back</a>

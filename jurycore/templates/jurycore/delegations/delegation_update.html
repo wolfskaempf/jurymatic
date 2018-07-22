@@ -1,0 +1,40 @@
+{% extends "jurycore/base.html" %}
+
+{% block header_title %}Update delegation{% endblock %}
+{% block header_custom %}{% endblock %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+    <div class="container">
+        <h1>Update delegation</h1>
+        <div class="btn-group" style="margin-bottom: 1em">
+            <a class="btn btn-default" href="{% url 'jurycore:delegation_list' booklet.slug %}">Go back</a>
+        </div>
+        {% if messages %}
+            <div class="alert alert-success" role="alert">
+                {% for message in messages %}
+                    <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+            {{ form.non_field_errors }}
+            <div class="form-group">
+                {{ form.name.label_tag }}
+                {{ form.name.errors }}
+                {{ form.name|add_class:"form-control"|attr:"autofocus" }}
+            </div>
+            <div class="form-group">
+                {{ form.colour.label_tag }}
+                {{ form.colour.errors }}
+                {{ form.colour }}
+                {% if form.colour.help_text %}
+                    <small class="form-text text-muted">{{ form.colour.help_text }}</small>
+                {% endif %}
+            </div>
+            <button type="submit" class="btn btn-primary">Update delegation</button>
+        </form>
+    </div>
+
+{% endblock %}
