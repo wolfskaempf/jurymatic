@@ -7,8 +7,8 @@ from .models import Committee, Delegate, Delegation, Booklet
 
 class BookletAdmin(GuardedModelAdmin):
     # The information, which should be displayed in the list of booklets.
-    list_display = ["session_name", "author_name", "author_email"]
-    search_fields = ["session_name", "author_name", "author_email"]
+    list_display = ["session_name"]
+    search_fields = ["session_name"]
 
 
 class DelegateAdmin(GuardedModelAdmin):

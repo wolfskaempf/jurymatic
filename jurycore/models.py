@@ -1,6 +1,8 @@
 from __future__ import unicode_literals
 
 import uuid as uuid
+
+from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import CASCADE, UUIDField
 from django.utils.text import slugify
@@ -10,8 +12,7 @@ from jurycore.helpers.slug_helper import unique_slugify
 
 class Booklet(models.Model):
     session_name = models.CharField(max_length=100)
-    author_name = models.CharField(max_length=100)
-    author_email = models.EmailField()
+    created_by = models.ForeignKey(User, on_delete=CASCADE)
     slug = models.SlugField(unique=True, blank=True)
 
     def __str__(self):

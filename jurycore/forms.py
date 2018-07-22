@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Delegate
+from .models import Delegate, Booklet
 
 
 class DelegateForm(forms.ModelForm):
@@ -14,4 +14,13 @@ class DelegateForm(forms.ModelForm):
             'committee',
             'delegation',
             'remarks'
+        ]
+
+class BookletForm(forms.ModelForm):
+    """Form for creating a booklet"""
+
+    class Meta:
+        model = Booklet
+        fields = [
+            'session_name',
         ]
