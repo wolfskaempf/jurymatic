@@ -1,1 +1,1 @@
-web: gunicorn jurymatic.wsgi
+web: gunicorn jurymatic.wsgi --log-file -
