@@ -43,6 +43,32 @@ def delegate_create(request, booklet):
     context = {"form": form, "booklet": booklet}
     return render(request, template, context)
 
+
+@login_required()
+@permission_required_or_403('change_booklet', (Booklet, 'slug', 'booklet'))
+def delegate_update(request, booklet, uuid):
+    """This view updates a delegate """
+    booklet = get_object_or_404(Booklet, slug=booklet)
+    delegate = get_object_or_404(Delegate, uuid=uuid)
+
+    if not delegate.booklet == booklet:
+        return HttpResponseForbidden()
+
+    form = DelegateForm(instance=delegate)
+    form.fields['committee'].queryset = Committee.objects.filter(booklet=booklet)
+    form.fields['delegation'].queryset = Delegation.objects.filter(booklet=booklet)
+
+    if request.method == "POST":
+        form = DelegateForm(request.POST, request.FILES, instance=delegate)
+        if form.is_valid():
+            form.save()
+            messages.success(request, form.cleaned_data['name'] + ' has been renamed successfully.')
+            return HttpResponseRedirect(reverse('jurycore:delegate_list', args=[booklet.slug]))
+
+    template = "jurycore/delegates/delegate_update.html"
+    context = {"form": form, "booklet": booklet}
+    return render(request, template, context)
+
 @login_required()
 @permission_required_or_403('change_booklet', (Booklet, 'slug', 'booklet'))
 def delegate_delete(request, booklet, uuid):
