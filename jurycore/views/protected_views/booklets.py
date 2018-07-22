@@ -7,7 +7,7 @@ from guardian.decorators import permission_required_or_403
 from guardian.shortcuts import assign_perm
 
 from jurycore.forms import BookletForm
-from jurycore.models import Booklet, Committee, Delegation
+from jurycore.models import Booklet, Committee, Delegation, Delegate
 
 
 @login_required()
@@ -39,10 +39,17 @@ def booklet_show(request, slug):
     committees = Committee.objects.filter(booklet=booklet)
     delegations = Delegation.objects.filter(booklet=booklet)
 
-    context = {"booklet": booklet, "committees": committees, "delegations": delegations}
+    statistics = {
+        'delegate_count': Delegate.objects.filter(booklet=booklet).count(),
+        'committee_count': committees.count(),
+        'delegation_count': delegations.count()
+    }
+
+    context = {"booklet": booklet, "committees": committees, "delegations": delegations, "statistics": statistics}
     template = "jurycore/booklets/booklet_show.html"
 
     return render(request, template, context)
+
 
 @login_required()
 @permission_required_or_403('change_booklet', (Booklet, 'slug', 'slug'))
@@ -61,6 +68,7 @@ def booklet_update(request, slug):
     template = "jurycore/booklets/booklet_update.html"
     context = {"form": form, "booklet": booklet}
     return render(request, template, context)
+
 
 @login_required()
 @permission_required_or_403('delete_booklet', (Booklet, 'slug', 'slug'))
