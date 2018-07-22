@@ -14,6 +14,11 @@
                 <button type="button" class="btn btn-success">Manage delegations</button>
             </div>
             <div class="btn-group mr-2" role="group" aria-label="Toolbar with booklet options">
+                <a href="{% url 'jurycore:printing_view' %}">
+                    <button type="button" class="btn btn-info">Print this booklet</button>
+                </a>
+            </div>
+            <div class="btn-group mr-2" role="group" aria-label="Toolbar with booklet options">
                 <button type="button" class="btn btn-danger">Delete this booklet</button>
             </div>
         </div>
@@ -23,7 +28,9 @@
                 {% if committees %}
                     {% for committee in committees %}
                         <ul>
-                            <li><a href="{% url 'jurycore:committee_show' committee.pk %}">{{ committee.name }}</a></li>
+                            <li>
+                                <a href="{% url 'jurycore:committee_show' booklet.slug committee.uuid %}">{{ committee.name }}</a>
+                            </li>
                         </ul>
                     {% endfor %}
                 {% else %}
@@ -39,7 +46,8 @@
                 {% if delegations %}
                     {% for delegation in delegations %}
                         <ul>
-                            <li><a href="{% url 'jurycore:delegation_show' delegation.pk %}">{{ delegation.name }}</a>
+                            <li>
+                                <a href="{% url 'jurycore:delegation_show' booklet.slug delegation.uuid %}">{{ delegation.name }}</a>
                             </li>
                         </ul>
                     {% endfor %}

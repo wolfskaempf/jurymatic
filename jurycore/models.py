@@ -1,7 +1,8 @@
 from __future__ import unicode_literals
 
+import uuid as uuid
 from django.db import models
-from django.db.models import CASCADE;
+from django.db.models import CASCADE, UUIDField
 from django.utils.text import slugify
 
 from jurycore.helpers.slug_helper import unique_slugify
@@ -28,6 +29,7 @@ class Booklet(models.Model):
 
 
 class Delegate(models.Model):
+    uuid = UUIDField(default=uuid.uuid4(), editable=False, unique=True)
     booklet = models.ForeignKey("Booklet", on_delete=CASCADE)
     name = models.CharField(max_length=100)
     photo = models.ImageField(upload_to='delegate_pictures/')
@@ -45,6 +47,7 @@ class Delegate(models.Model):
 
 
 class Delegation(models.Model):
+    uuid = UUIDField(default=uuid.uuid4(), editable=False, unique=True)
     name = models.CharField(max_length=100)
     colour = models.CharField(max_length=8, blank=True)
     booklet = models.ForeignKey("Booklet", on_delete=CASCADE)
@@ -59,6 +62,7 @@ class Delegation(models.Model):
 
 
 class Committee(models.Model):
+    uuid = UUIDField(default=uuid.uuid4(), editable=False, unique=True)
     name = models.CharField(max_length=100)
     booklet = models.ForeignKey("Booklet", on_delete=CASCADE)
 

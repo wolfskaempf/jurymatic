@@ -1,21 +1,12 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404
 # Create your views here.
 from guardian.decorators import permission_required_or_403
 from guardian.shortcuts import get_objects_for_user
 
 from jurycore.forms import DelegateForm
 from jurycore.models import Committee, Delegate, Delegation, Booklet
-
-
-def home(request):
-    """ This view shows some basic information to help the user understand the software """
-    if request.user.is_authenticated:
-        return redirect('jurycore:dashboard')
-    context = {}
-    template = "jurycore/home.html"
-    return render(request, template, context)
 
 
 @login_required()
@@ -64,7 +55,7 @@ def delegate_create(request):
 @login_required()
 @permission_required_or_403('view_booklet', (Booklet, 'slug', 'booklet'))
 def committee_list(request, booklet):
-    """ This view shows a list of all committees"""
+    """ This view shows a list of all committees of a given booklet"""
     booklet = get_object_or_404(Booklet, slug=booklet)
     committees = Committee.objects.filter(booklet=booklet).order_by("name")
 
@@ -74,11 +65,14 @@ def committee_list(request, booklet):
 
 
 @login_required()
-def committee_show(request, pk):
+@permission_required_or_403('view_booklet', (Booklet, 'slug', 'booklet'))
+@permission_required_or_403('view_committee', (Committee, 'uuid', 'uuid'))
+def committee_show(request, booklet, uuid):
     """ This view shows an individual committee and all its delegates formatted for printing """
-    committee = Committee.objects.get(pk=pk)
 
-    delegates = Delegate.objects.filter(committee_id=pk)
+    committee = Committee.objects.get(uuid=uuid)
+
+    delegates = Delegate.objects.filter(committee=committee)
 
     context = {"committee": committee, "delegates": delegates}
     template = "jurycore/committee_show.html"
@@ -86,11 +80,13 @@ def committee_show(request, pk):
 
 
 @login_required()
-def delegation_show(request, pk):
+@permission_required_or_403('view_booklet', (Booklet, 'slug', 'booklet'))
+@permission_required_or_403('view_delegation', (Delegation, 'uuid', 'uuid'))
+def delegation_show(request, booklet, uuid):
     """ This view shows an individual delegation and all its delegates formatted for printing """
-    delegation = Delegation.objects.get(pk=pk)
+    delegation = Delegation.objects.get(uuid=uuid)
 
-    delegates = Delegate.objects.filter(delegation_id=pk).order_by("committee__name")
+    delegates = Delegate.objects.filter(delegation=delegation).order_by("committee__name")
 
     context = {"delegation": delegation, "delegates": delegates, "delegation_show": True}
     template = "jurycore/delegation_show.html"
