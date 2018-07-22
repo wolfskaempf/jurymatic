@@ -15,9 +15,9 @@
         {% endif %}
         <h1>{{ booklet.session_name }}</h1>
         <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with creation actions">
-            <div class="btn-group mr-2" role="group" aria-label="Creation actions">
+            <div class="btn-group mr-2" role="group" aria-label="Management actions">
                 <button type="button" class="btn btn-success">Manage delegates</button>
-                <button type="button" class="btn btn-success">Manage committees</button>
+                <a class="btn btn-success" href="{% url 'jurycore:committee_list' booklet.slug %}">Manage committees</a>
                 <button type="button" class="btn btn-success">Manage delegations</button>
             </div>
             <div class="btn-group mr-2" role="group" aria-label="Toolbar with booklet options">

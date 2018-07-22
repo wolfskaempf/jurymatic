@@ -20,7 +20,7 @@
             <div class="form-group">
                 {{ form.name.label_tag }}
                 {{ form.name.errors }}
-                {{ form.name|add_class:"form-control" }}
+                {{ form.name|add_class:"form-control"|attr:"autofocus" }}
             </div>
             <div class="form-group">
                 {{ form.photo.label_tag }}

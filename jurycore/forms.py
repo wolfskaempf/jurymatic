@@ -1,10 +1,10 @@
 from django import forms
 
-from .models import Delegate, Booklet
+from .models import Delegate, Booklet, Committee
 
 
 class DelegateForm(forms.ModelForm):
-    """Form for creating a delegate"""
+    """ Form for creating a delegate """
 
     class Meta:
         model = Delegate
@@ -18,10 +18,20 @@ class DelegateForm(forms.ModelForm):
 
 
 class BookletForm(forms.ModelForm):
-    """Form for creating a booklet"""
+    """ Form for creating a booklet """
 
     class Meta:
         model = Booklet
         fields = [
             'session_name',
+        ]
+
+
+class CommitteeForm(forms.ModelForm):
+    """ Form for creating a committee """
+
+    class Meta:
+        model = Committee
+        fields = [
+            'name',
         ]

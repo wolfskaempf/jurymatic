@@ -17,7 +17,5 @@ def delegate_create(request):
             form = DelegateForm()
 
     template = "jurycore/delegates/delegate_create.html"
-    context = {
-        "form": form
-    }
+    context = {"form": form}
     return render(request, template, context)
