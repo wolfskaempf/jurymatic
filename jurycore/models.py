@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 
 import os
+import pathlib
 import uuid as uuid
 
 from colorful.fields import RGBColorField
@@ -36,7 +37,11 @@ class Delegate(models.Model):
     uuid = UUIDField(default=uuid.uuid4, editable=False, unique=True)
     booklet = models.ForeignKey("Booklet", on_delete=CASCADE)
     name = models.CharField(max_length=100)
-    photo = models.ImageField(upload_to='delegate_pictures/')
+
+    def get_upload_path(self, filename):
+        return os.path.join("delegate_pictures", self.booklet.slug, "%s%s" % (self.uuid, pathlib.Path(filename).suffix))
+
+    photo = models.ImageField(upload_to=get_upload_path)
     committee = models.ForeignKey("Committee", on_delete=CASCADE)
     delegation = models.ForeignKey("Delegation", on_delete=CASCADE)
     remarks = models.TextField(blank=True)
