@@ -1,0 +1,17 @@
+{% extends "jurycore/base.html" %}
+
+{% block header_title %}Delete Delegate{% endblock %}
+{% block header_custom %}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Delete {{ delegate }}?</h1>
+        <img height="250" width="250" style="object-fit:cover" class="mr-3" src="{{ delegate.photo.url }}" alt="Photo of {{ delegate.name }}">
+        <form action='.' method='POST'>{% csrf_token %}
+            <p>Are you sure that you want to delete the delegate {{ delegate }}?</p>
+            <p><input class="btn btn-danger" type='submit' value='Yes, delete {{ delegate }}'/> <a class="btn btn-default" href='{% url 'jurycore:delegate_list' booklet.slug %}'>Cancel</a></p>
+
+        </form>
+    </div>
+
+{% endblock %}

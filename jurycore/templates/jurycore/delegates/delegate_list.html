@@ -35,7 +35,7 @@
                         <div class="btn-group btn-group-xs">
                         <a href="{% url 'jurycore:delegate_list' booklet.slug %}"
                            class="btn btn-xs btn-info">Update</a>
-                        <a href="{% url 'jurycore:delegate_list' booklet.slug %}"
+                        <a href="{% url 'jurycore:delegate_delete' booklet.slug delegate.uuid %}"
                            class="btn btn-xs btn-danger">Delete</a>
                     </div>
                     </div>
