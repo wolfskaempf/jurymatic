@@ -23,11 +23,13 @@ def committee_list(request, booklet):
 
 @login_required()
 @permission_required_or_403('view_booklet', (Booklet, 'slug', 'booklet'))
-@permission_required_or_403('view_committee', (Committee, 'uuid', 'uuid'))
 def committee_show(request, booklet, uuid):
     """ This view shows an individual committee and all its delegates formatted for printing """
+    committee = get_object_or_404(Committee, uuid=uuid)
+    booklet = get_object_or_404(Booklet, slug=booklet)
 
-    committee = Committee.objects.get(uuid=uuid)
+    if not committee.booklet == booklet:
+        return HttpResponseForbidden()
 
     delegates = Delegate.objects.filter(committee=committee)
 
