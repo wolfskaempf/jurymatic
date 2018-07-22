@@ -16,6 +16,7 @@ class DelegateForm(forms.ModelForm):
             'remarks'
         ]
 
+
 class BookletForm(forms.ModelForm):
     """Form for creating a booklet"""
 

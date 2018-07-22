@@ -1,9 +1,10 @@
-from django.urls import path
-from django.conf.urls.static import static
 from django.conf import settings
+from django.conf.urls.static import static
+from django.urls import path
 
-from jurycore.views.protected_views import overview, booklets, delegates, committees, delegations, printing
 import jurycore.views.public_views
+from jurycore.views.auth import sign_up;
+from jurycore.views.protected_views import overview, booklets, delegates, committees, delegations, printing
 
 app_name = 'jurycore'
 urlpatterns = [
@@ -16,6 +17,7 @@ urlpatterns = [
     path('booklet/<slug:booklet>/committee/<uuid:uuid>/', committees.committee_show, name='committee_show'),
     path('booklet/<slug:booklet>/delegation/<uuid:uuid>/', delegations.delegation_show, name='delegation_show'),
     path('booklet/<slug:booklet>/print/', printing.printing_view, name='printing_view'),
+    path('sign_up/', sign_up.sign_up, name='sign_up'),
 ]
 
 if settings.DEBUG is True:
