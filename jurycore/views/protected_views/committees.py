@@ -43,7 +43,7 @@ def committee_create(request, booklet):
     booklet = get_object_or_404(Booklet, slug=booklet)
     form = CommitteeForm()
     if request.method == "POST":
-        form = CommitteeForm(request.POST, request.FILES)
+        form = CommitteeForm(request.POST)
         if form.is_valid():
             committee = Committee(name=form.cleaned_data['name'], booklet=booklet)
             committee.save()
@@ -51,6 +51,28 @@ def committee_create(request, booklet):
             form = CommitteeForm()
 
     template = "jurycore/committees/committee_create.html"
+    context = {"form": form, "booklet": booklet}
+    return render(request, template, context)
+
+@login_required()
+@permission_required_or_403('change_booklet', (Booklet, 'slug', 'booklet'))
+def committee_update(request, booklet, uuid):
+    """This view creates delegates"""
+    booklet = get_object_or_404(Booklet, slug=booklet)
+    committee = get_object_or_404(Committee, uuid=uuid)
+
+    if not committee.booklet == booklet:
+        return HttpResponseForbidden()
+
+    form = CommitteeForm(instance=committee)
+    if request.method == "POST":
+        form = CommitteeForm(request.POST, instance=committee)
+        if form.is_valid():
+            form.save()
+            messages.success(request, form.cleaned_data['name'] + ' has been renamed successfully.')
+            return HttpResponseRedirect(reverse('jurycore:committee_list', args=[booklet.slug]))
+
+    template = "jurycore/committees/committee_update.html"
     context = {"form": form, "booklet": booklet}
     return render(request, template, context)
 

@@ -26,7 +26,7 @@
                         <a href="{% url 'jurycore:committee_show' booklet.slug committee.uuid %}">{{ committee.name }}</a>
                         <div class="btn-group btn-group-xs">
                             <a href="{% url 'jurycore:committee_show' booklet.slug committee.uuid %}" class="btn btn-xs btn-primary">Printing view</a>
-                            <a href="{% url 'jurycore:committee_show' booklet.slug committee.uuid %}" class="btn btn-xs btn-info">Rename</a>
+                            <a href="{% url 'jurycore:committee_update' booklet.slug committee.uuid %}" class="btn btn-xs btn-info">Rename</a>
                             <a href="{% url 'jurycore:committee_delete' booklet.slug committee.uuid %}" class="btn btn-xs btn-danger">Delete</a>
                         </div>
                     </li>
