@@ -42,7 +42,7 @@ class Delegate(models.Model):
     remarks = models.TextField(blank=True)
 
     def __str__(self):
-        return "(%s, %s)" % (self.committee.name, self.delegation.name)
+        return "%s (%s, %s)" % (self.name, self.committee.name, self.delegation.name)
 
     class Meta:
         permissions = (

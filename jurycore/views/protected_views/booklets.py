@@ -44,6 +44,24 @@ def booklet_show(request, slug):
     return render(request, template, context)
 
 @login_required()
+@permission_required_or_403('change_booklet', (Booklet, 'slug', 'slug'))
+def booklet_update(request, slug):
+    """This view update a booklet"""
+    booklet = get_object_or_404(Booklet, slug=slug)
+
+    form = BookletForm(instance=booklet)
+    if request.method == "POST":
+        form = BookletForm(request.POST, instance=booklet)
+        if form.is_valid():
+            form.save()
+            messages.success(request, form.cleaned_data['session_name'] + ' has been updated successfully.')
+            return HttpResponseRedirect(reverse('jurycore:booklet_show', args=[booklet.slug]))
+
+    template = "jurycore/booklets/booklet_update.html"
+    context = {"form": form, "booklet": booklet}
+    return render(request, template, context)
+
+@login_required()
 @permission_required_or_403('delete_booklet', (Booklet, 'slug', 'slug'))
 def booklet_delete(request, slug):
     """ This view deletes the booklet on POST """

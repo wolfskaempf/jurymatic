@@ -1,0 +1,28 @@
+{% extends "jurycore/base.html" %}
+
+{% block header_title %}Update Booklet{% endblock %}
+{% block header_custom %}{% endblock %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+    <div class="container">
+        <h1>Update booklet</h1>
+        {% if messages %}
+            <div class="alert alert-success" role="alert">
+                {% for message in messages %}
+                    <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+            {{ form.non_field_errors }}
+            <div class="form-group">
+                {{ form.session_name.errors }}
+                {{ form.session_name|add_class:"form-control"|attr:"placeholder:Name"|attr:"autofocus" }}
+            </div>
+            <button type="submit" class="btn btn-primary">Update booklet</button>
+        </form>
+    </div>
+
+{% endblock %}
