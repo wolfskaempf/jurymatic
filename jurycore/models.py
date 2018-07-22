@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 import os
 import uuid as uuid
 
+from colorful.fields import RGBColorField
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import CASCADE, UUIDField
@@ -84,7 +85,7 @@ def auto_delete_file_on_change(sender, instance, **kwargs):
 class Delegation(models.Model):
     uuid = UUIDField(default=uuid.uuid4, editable=False, unique=True)
     name = models.CharField(max_length=100)
-    colour = models.CharField(max_length=8, blank=True)
+    colour = RGBColorField(blank=True)
     booklet = models.ForeignKey("Booklet", on_delete=CASCADE)
 
     def __str__(self):

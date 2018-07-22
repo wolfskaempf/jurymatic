@@ -39,7 +39,7 @@ def committee_show(request, booklet, uuid):
 @login_required()
 @permission_required_or_403('change_booklet', (Booklet, 'slug', 'booklet'))
 def committee_create(request, booklet):
-    """This view creates delegates"""
+    """This view creates a committee"""
     booklet = get_object_or_404(Booklet, slug=booklet)
     form = CommitteeForm()
     if request.method == "POST":
@@ -57,7 +57,7 @@ def committee_create(request, booklet):
 @login_required()
 @permission_required_or_403('change_booklet', (Booklet, 'slug', 'booklet'))
 def committee_update(request, booklet, uuid):
-    """This view creates delegates"""
+    """This view updates committees"""
     booklet = get_object_or_404(Booklet, slug=booklet)
     committee = get_object_or_404(Committee, uuid=uuid)
 

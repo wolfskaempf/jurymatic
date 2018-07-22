@@ -1,6 +1,8 @@
+from colorful.forms import RGBColorField
 from django import forms
+from django.forms import CharField
 
-from .models import Delegate, Booklet, Committee
+from .models import Delegate, Booklet, Committee, Delegation
 
 
 class DelegateForm(forms.ModelForm):
@@ -35,3 +37,16 @@ class CommitteeForm(forms.ModelForm):
         fields = [
             'name',
         ]
+
+class DelegationForm(forms.ModelForm):
+    """ Form for creating a delegation """
+
+    colour = RGBColorField(help_text='Optional, defaults to black. Choose dark colours.')
+
+    class Meta:
+        model = Delegation
+        fields = [
+            'name',
+            'colour',
+        ]
+

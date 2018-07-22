@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'jurycore',
     'widget_tweaks',  # https://github.com/jazzband/django-widget-tweaks
     'guardian',  # https://github.com/django-guardian/django-guardian
+    'colorful', # https://github.com/charettes/django-colorful
 ]
 
 MIDDLEWARE = [
