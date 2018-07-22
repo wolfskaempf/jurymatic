@@ -23,6 +23,8 @@ urlpatterns = [
     path('booklet/<slug:booklet>/delegation/<uuid:uuid>/', delegations.delegation_show, name='delegation_show'),
     path('booklet/<slug:booklet>/delegation/<uuid:uuid>/update/', delegations.delegation_update,
          name='delegation_update'),
+    path('booklet/<slug:booklet>/delegation/<uuid:uuid>/delete/', delegations.delegation_delete,
+         name='delegation_delete'),
     path('booklet/<slug:booklet>/delegation/create/', delegations.delegation_create, name='delegation_create'),
     path('booklet/<slug:booklet>/print/', printing.printing_view, name='printing_view'),
     path('sign_up/', sign_up.sign_up, name='sign_up'),

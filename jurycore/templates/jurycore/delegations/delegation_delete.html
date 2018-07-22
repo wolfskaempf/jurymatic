@@ -1,0 +1,16 @@
+{% extends "jurycore/base.html" %}
+
+{% block header_title %}Delete Delegation{% endblock %}
+{% block header_custom %}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Delete {{ delegation.name }}?</h1>
+        <form action='.' method='POST'>{% csrf_token %}
+            <p>Are you sure that you want to delete the delegation {{ delegation.name }}? This will delete all delegates which are part of this delegation as well!</p>
+            <p><input class="btn btn-danger" type='submit' value='Yes, delete {{ delegation.name }} and all delegates who belong to {{ delegation.name }}'/> <a class="btn btn-default" href='{% url 'jurycore:delegation_list' booklet.slug %}'>Cancel</a></p>
+
+        </form>
+    </div>
+
+{% endblock %}

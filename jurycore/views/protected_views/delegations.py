@@ -77,19 +77,19 @@ def delegation_update(request, booklet, uuid):
 @login_required()
 @permission_required_or_403('change_booklet', (Booklet, 'slug', 'booklet'))
 def delegation_delete(request, booklet, uuid):
-    """ This view deletes the committee on POST """
+    """ This view deletes the delegation on POST """
     booklet = get_object_or_404(Booklet, slug=booklet)
-    committee = get_object_or_404(Committee, uuid=uuid)
+    delegation = get_object_or_404(Delegation, uuid=uuid)
 
-    if not committee.booklet == booklet:
+    if not delegation.booklet == booklet:
         return HttpResponseForbidden()
 
     if request.method == "POST":
-        committee.delete()
-        messages.success(request, booklet.session_name + ' has been deleted successfully.')
-        return HttpResponseRedirect(reverse('jurycore:committee_list', args=[booklet.slug]))
+        delegation.delete()
+        messages.success(request, delegation.name + ' has been deleted successfully.')
+        return HttpResponseRedirect(reverse('jurycore:delegation_list', args=[booklet.slug]))
 
-    context = {"booklet": booklet, "committee": committee}
-    template = "jurycore/committees/committee_delete.html"
+    context = {"booklet": booklet, "delegation": delegation}
+    template = "jurycore/delegations/delegation_delete.html"
 
     return render(request, template, context)

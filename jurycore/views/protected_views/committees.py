@@ -89,7 +89,7 @@ def committee_delete(request, booklet, uuid):
 
     if request.method == "POST":
         committee.delete()
-        messages.success(request, booklet.session_name + ' has been deleted successfully.')
+        messages.success(request, committee.name + ' has been deleted successfully.')
         return HttpResponseRedirect(reverse('jurycore:committee_list', args=[booklet.slug]))
 
     context = {"booklet": booklet, "committee": committee}

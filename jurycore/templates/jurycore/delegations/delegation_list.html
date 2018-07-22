@@ -34,7 +34,7 @@
                         <div class="btn-group btn-group-xs">
                             <a href="{% url 'jurycore:delegation_show' booklet.slug delegation.uuid %}" class="btn btn-xs btn-primary">Printing view</a>
                             <a href="{% url 'jurycore:delegation_update' booklet.slug delegation.uuid %}" class="btn btn-xs btn-info">Update</a>
-                            <a href="{% url 'jurycore:delegation_show' booklet.slug delegation.uuid %}" class="btn btn-xs btn-danger">Delete</a>
+                            <a href="{% url 'jurycore:delegation_delete' booklet.slug delegation.uuid %}" class="btn btn-xs btn-danger">Delete</a>
                         </div>
                     </li>
                 </ul>
