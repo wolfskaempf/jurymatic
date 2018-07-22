@@ -17,7 +17,8 @@ def booklet_create(request):
     if request.method == "POST":
         form = BookletForm(request.POST)
         if form.is_valid():
-            booklet = Booklet(session_name=form.cleaned_data['session_name'], created_by=request.user)
+            booklet = form.save(False)
+            booklet.created_by = request.user
             booklet.save()
             assign_perm('view_booklet', request.user, booklet)
             assign_perm('change_booklet', request.user, booklet)
@@ -46,7 +47,7 @@ def booklet_show(request, slug):
 @login_required()
 @permission_required_or_403('change_booklet', (Booklet, 'slug', 'slug'))
 def booklet_update(request, slug):
-    """This view update a booklet"""
+    """This view updates a booklet"""
     booklet = get_object_or_404(Booklet, slug=slug)
 
     form = BookletForm(instance=booklet)

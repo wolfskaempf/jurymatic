@@ -8,6 +8,9 @@
 {% block content %}
     <div class="container">
         <h1>Add delegate</h1>
+        <div class="btn-group" style="margin-bottom: 1em">
+            <a class="btn btn-default" href="{% url 'jurycore:booklet_show' booklet.slug %}">Go back</a>
+        </div>
         {% if messages %}
             <div class="alert alert-success" role="alert">
                 {% for message in messages %}
@@ -33,15 +36,15 @@
                 {{ form.committee.label_tag }}
                 {{ form.committee.errors }}
                 {{ form.committee|add_class:"form-control" }}
-                <p class="help-block">Please add additional committees in the <a href="/admin/jurycore/committee/">admin
-                    area</a> and reload this page.</p>
+                <p class="help-block">You can add additional committees in the <a
+                        href="{% url 'jurycore:committee_list' booklet.slug %}">management area.</a></p>
             </div>
             <div class="form-group">
                 {{ form.delegation.label_tag }}
                 {{ form.delegation.errors }}
                 {{ form.delegation|add_class:"form-control" }}
-                <p class="help-block">Please add additional delegations in the <a href="/admin/jurycore/delegation/">admin
-                    area</a> and reload this page.</p>
+                <p class="help-block">You can add additional delegations in the <a
+                        href="{% url 'jurycore:delegation_list' booklet.slug %}">management area.</a></p>
             </div>
             <div class="form-group">
                 {{ form.remarks.label_tag }}

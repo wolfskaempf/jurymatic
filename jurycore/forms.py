@@ -1,6 +1,5 @@
 from colorful.forms import RGBColorField
 from django import forms
-from django.forms import CharField
 
 from .models import Delegate, Booklet, Committee, Delegation
 
@@ -17,6 +16,8 @@ class DelegateForm(forms.ModelForm):
             'delegation',
             'remarks'
         ]
+
+
 
 
 class BookletForm(forms.ModelForm):
@@ -38,6 +39,7 @@ class CommitteeForm(forms.ModelForm):
             'name',
         ]
 
+
 class DelegationForm(forms.ModelForm):
     """ Form for creating a delegation """
 
@@ -49,4 +51,3 @@ class DelegationForm(forms.ModelForm):
             'name',
             'colour',
         ]
-
