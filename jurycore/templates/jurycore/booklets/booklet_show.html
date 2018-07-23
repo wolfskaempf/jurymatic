@@ -74,11 +74,31 @@
             </div>
             <div class="col-sm-4 col-xs-12">
                 <h2>Statistics</h2>
-                <p>You currently have {{ statistics.delegate_count }} delegates in {{ statistics.committee_count }} committees and {{ statistics.delegation_count }} delegations.</p>
+                <p>You currently have {{ statistics.delegate_count }} delegates in {{ statistics.committee_count }}
+                    committees and {{ statistics.delegation_count }} delegations.</p>
+                <h2>Self-Registration</h2>
+                <p>Self-Registration allows delegates to add themselves to jurymatic. All you need to do is share this
+                    link with them.</p>
+                <div class="input-group">
+                    <span class="input-group-addon" id="form-span">Link</span>
+                    <input type="text" class="form-control" id="self-registration-link"
+                           value="{{ self_registration_link }}">
+                </div>
             </div>
         </div>
     </div>
 
 
     </div>
+{% endblock %}
+
+{% block custom_js %}
+    <script type="application/javascript">
+        // language=JQuery-CSS
+        $("#self-registration-link").on("click", function () {
+            $(this).select();
+            document.execCommand("copy");
+            $("#form-span").text("Copied!")
+        });
+    </script>
 {% endblock %}

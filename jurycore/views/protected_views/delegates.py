@@ -44,6 +44,31 @@ def delegate_create(request, booklet):
     return render(request, template, context)
 
 
+def delegate_register(request, booklet, uuid):
+    """This view allows delegates to register themselves"""
+    booklet = get_object_or_404(Booklet, slug=booklet)
+
+    if not booklet.uuid == uuid:
+        return HttpResponseForbidden()
+
+    form = DelegateForm()
+    form.fields['committee'].queryset = Committee.objects.filter(booklet=booklet)
+    form.fields['delegation'].queryset = Delegation.objects.filter(booklet=booklet)
+
+    if request.method == "POST":
+        form = DelegateForm(request.POST, request.FILES)
+        if form.is_valid():
+            delegate = form.save(False)
+            delegate.booklet = booklet
+            delegate.save()
+            messages.success(request, 'Thank you, ' + form.cleaned_data['name'] + '. Your registration was successful.')
+            form = DelegateForm()
+
+    template = "jurycore/delegates/delegate_register.html"
+    context = {"form": form, "booklet": booklet}
+    return render(request, template, context)
+
+
 @login_required()
 @permission_required_or_403('change_booklet', (Booklet, 'slug', 'booklet'))
 def delegate_update(request, booklet, uuid):

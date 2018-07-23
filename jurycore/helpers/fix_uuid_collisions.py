@@ -1,6 +1,6 @@
 import uuid
 
-from jurycore.models import Delegate, Committee, Delegation
+from jurycore.models import Delegate, Committee, Delegation, Booklet
 
 
 def fix_collisions():
@@ -18,4 +18,10 @@ def fix_collisions():
     for d in delegations:
         d.uuid = uuid.uuid4()
         d.save()
+
+    booklets = Booklet.objects.all()
+    for booklet in booklets:
+        booklet.uuid = uuid.uuid4()
+        booklet.save()
+
     print("Done")

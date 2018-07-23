@@ -23,6 +23,8 @@ urlpatterns = [
     #  Delegates
     path('booklet/<slug:booklet>/delegates/', delegates.delegate_list, name='delegate_list'),
     path('booklet/<slug:booklet>/delegate/create/', delegates.delegate_create, name='delegate_create'),
+    path('booklet/<slug:booklet>/delegate/register/<uuid:uuid>/', delegates.delegate_register,
+         name='delegate_register'),
     path('booklet/<slug:booklet>/delegate/<uuid:uuid>/delete/', delegates.delegate_delete, name='delegate_delete'),
     path('booklet/<slug:booklet>/delegate/<uuid:uuid>/update/', delegates.delegate_update, name='delegate_update'),
     #  Committees

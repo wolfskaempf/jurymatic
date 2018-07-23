@@ -17,6 +17,7 @@ from jurycore.helpers.slug_helper import unique_slugify
 
 
 class Booklet(models.Model):
+    uuid = UUIDField(default=uuid.uuid4, editable=False, unique=True)
     session_name = models.CharField(max_length=100)
     created_by = models.ForeignKey(User, on_delete=CASCADE)
     slug = models.SlugField(unique=True, blank=True)

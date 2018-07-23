@@ -47,7 +47,16 @@ def booklet_show(request, slug):
         'delegation_count': delegations.count()
     }
 
-    context = {"booklet": booklet, "committees": committees, "delegations": delegations, "statistics": statistics}
+    self_registration_link = request.build_absolute_uri(
+        reverse('jurycore:delegate_register', args=[slug, booklet.uuid]))
+
+    context = {
+        "booklet": booklet,
+        "committees": committees,
+        "delegations": delegations,
+        "statistics": statistics,
+        "self_registration_link": self_registration_link
+    }
     template = "jurycore/booklets/booklet_show.html"
 
     return render(request, template, context)
