@@ -18,8 +18,6 @@ class DelegateForm(forms.ModelForm):
         ]
 
 
-
-
 class BookletForm(forms.ModelForm):
     """ Form for creating a booklet """
 
@@ -28,6 +26,11 @@ class BookletForm(forms.ModelForm):
         fields = [
             'session_name',
         ]
+
+
+class BookletShareForm(forms.Form):
+    """ Form for sharing a booklet """
+    username = forms.CharField()
 
 
 class CommitteeForm(forms.ModelForm):

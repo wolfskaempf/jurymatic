@@ -32,6 +32,10 @@
                 <a class="btn btn-danger" href="{% url 'jurycore:booklet_delete' booklet.slug %}">Delete this
                     booklet </a>
             </div>
+            <div class="btn-group mr-2" role="group" aria-label="Toolbar with booklet options">
+                <a class="btn btn-success" href="{% url 'jurycore:booklet_share' booklet.slug %}">Share this
+                    booklet </a>
+            </div>
         </div>
         <div class="row">
             <div class="col-sm-4 col-xs-12">

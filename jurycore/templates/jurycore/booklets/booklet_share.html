@@ -1,0 +1,53 @@
+{% extends "jurycore/base.html" %}
+
+{% block header_title %}Share Booklet{% endblock %}
+{% block header_custom %}{% endblock %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+    <div class="container">
+
+        <h1>{{ booklet.session_name }}</h1>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}" role="alert">
+                    <p>{{ message }}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
+        <a class="btn btn-default" href='{% url 'jurycore:booklet_show' booklet.slug %}'>Go
+            back</a>
+        <h2>Share booklet</h2>
+        <p>Users who you share a booklet with will receive the same rights to the booklet as you, except for revoking
+            access to a booklet. They can still share the booklet with other users.</p>
+        <h3>Shared with</h3>
+        {% if users %}
+            <ul>
+                {% for user in users %}
+                    <li style="margin-bottom: 5px">
+                        {{ user.username }}
+                        {% if request.user == booklet.created_by %}
+                            <a class="btn btn-xs btn-danger"
+                               href="{% url 'jurycore:booklet_revoke_access' booklet.slug user.username %}">Revoke
+                                access</a>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>You have not shared this booklet with anyone.</p>
+        {% endif %}
+        <h3>Share with a new user</h3>
+        <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+            {{ form.non_field_errors }}
+            <div class="form-group">
+                {{ form.username.errors }}
+                {{ form.username|add_class:"form-control"|attr:"placeholder:Username"|attr:"autofocus" }}
+            </div>
+            <button type="submit" class="btn btn-primary">Share booklet</button>
+            <a class="btn btn-default" href='{% url 'jurycore:booklet_show' booklet.slug %}'>Cancel</a>
+        </form>
+    </div>
+
+{% endblock %}
