@@ -151,4 +151,4 @@ RAVEN_CONFIG = {
 }
 
 # Configure Django App for Heroku.
-django_heroku.settings(locals(), staticfiles=False)
+django_heroku.settings(locals())
