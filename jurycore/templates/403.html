@@ -1,0 +1,17 @@
+{% extends "jurycore/base.html" %}
+
+{% block header_title %}Forbidden{% endblock %}
+{% block header_custom %}{% endblock %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+    <div class="container">
+        <h1>403: You are not authrorised to do that.</h1>
+        <p>If you think this is a mistake, please report a bug.</p>
+        <div class="btn-group">
+            <a class="btn btn-default" href="{% url 'jurycore:home' %}">Go home</a>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "jurycore/base.html" %}
+
+{% block header_title %}The page could not be found{% endblock %}
+{% block header_custom %}{% endblock %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+    <div class="container">
+        <h1>404: The page you are looking for could not be found.</h1>
+        <div class="btn-group">
+            <a class="btn btn-default" href="{% url 'jurycore:home' %}">Go home</a>
+        </div>
+    </div>
+
+{% endblock %}
