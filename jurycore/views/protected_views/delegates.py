@@ -62,7 +62,7 @@ def delegate_update(request, booklet, uuid):
         form = DelegateForm(request.POST, request.FILES, instance=delegate)
         if form.is_valid():
             form.save()
-            messages.success(request, form.cleaned_data['name'] + ' has been renamed successfully.')
+            messages.success(request, form.cleaned_data['name'] + ' has been updated successfully.')
             return HttpResponseRedirect(reverse('jurycore:delegate_list', args=[booklet.slug]))
 
     template = "jurycore/delegates/delegate_update.html"
