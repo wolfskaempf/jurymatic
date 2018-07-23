@@ -126,9 +126,6 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
-    os.path.join(BASE_DIR, "staticfiles"),
-    os.path.join(PROJECT_ROOT, "staticfiles"),
-
 )
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
@@ -156,4 +153,4 @@ RAVEN_CONFIG = {
 }
 
 # Configure Django App for Heroku.
-django_heroku.settings(locals())
+django_heroku.settings(locals(), staticfiles=False)
