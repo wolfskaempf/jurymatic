@@ -7,7 +7,7 @@
 
 {% block content %}
     <div class="container">
-        <h1>Add delegate</h1>
+        <h1>Create delegate</h1>
         <div class="btn-group" style="margin-bottom: 1em">
             <a class="btn btn-default" href="{% url 'jurycore:delegate_list' booklet.slug %}">Go back</a>
         </div>
@@ -51,7 +51,7 @@
                 {{ form.remarks.errors }}
                 {{ form.remarks|add_class:"form-control"|attr:"placeholder:Optional"|attr:"rows:2" }}
             </div>
-            <button type="submit" class="btn btn-primary">Save Delegate</button>
+            <button type="submit" class="btn btn-primary">Create Delegate</button>
         </form>
     </div>
 
