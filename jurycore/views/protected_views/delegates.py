@@ -21,6 +21,13 @@ def delegate_list(request, booklet):
     return render(request, template, context)
 
 
+def process_delegate_images(delegate):
+    """This function calls all different image options to prepare them"""
+    delegate.photo_thumbnail.url
+    delegate.photo_print.url
+    pass
+
+
 @login_required()
 @permission_required_or_403('change_booklet', (Booklet, 'slug', 'booklet'))
 def delegate_create(request, booklet):
@@ -36,6 +43,7 @@ def delegate_create(request, booklet):
             delegate = form.save(False)
             delegate.booklet = booklet
             delegate.save()
+            process_delegate_images(delegate)
             messages.success(request, form.cleaned_data['name'] + ' has been added successfully.')
             form = DelegateForm()
 
@@ -61,6 +69,7 @@ def delegate_register(request, booklet, uuid):
             delegate = form.save(False)
             delegate.booklet = booklet
             delegate.save()
+            process_delegate_images(delegate)
             messages.success(request, 'Thank you, ' + form.cleaned_data['name'] + '. Your registration was successful.')
             form = DelegateForm()
 
