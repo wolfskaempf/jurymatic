@@ -164,5 +164,5 @@ def booklet_print(request, booklet):
     committees = Committee.objects.filter(booklet=booklet).order_by("name")
 
     context = {"committees": committees}
-    template = "jurycore/printing_view.html"
+    template = "jurycore/booklets/booklet_print.html"
     return render(request, template, context)
