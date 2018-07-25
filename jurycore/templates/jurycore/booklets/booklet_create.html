@@ -21,7 +21,7 @@
                 {{ form.session_name.errors }}
                 {{ form.session_name|add_class:"form-control"|attr:"placeholder:Name"|attr:"autofocus" }}
             </div>
-            <button type="submit" class="btn btn-primary">Create booklet</button>
+            <button type="submit" class="btn btn-primary">Create booklet</button> <a class="btn btn-default" href='{% url 'jurycore:dashboard' %}'>Cancel</a></p>
         </form>
     </div>
 
