@@ -1,0 +1,13 @@
+{% extends "jurycore/base.html" %}
+
+{% block header_title %}Legend{% endblock %}
+{% block header_custom %}{% endblock %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+    <div class="container">
+        <a class="btn btn-default hidden-print" style="margin-bottom: 5px;" href='{% url 'jurycore:dashboard' %}'>Go back</a>
+        {% include "jurycore/help/_legend_content.html" %}
+    </div>
+{% endblock %}

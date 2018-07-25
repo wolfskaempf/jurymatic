@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
+from django.views.generic import TemplateView
 
 import jurycore.views.protected_views.booklets
 import jurycore.views.public_views
@@ -10,6 +11,7 @@ from jurycore.views.protected_views import overview, booklets, delegates, commit
 app_name = 'jurycore'
 urlpatterns = [
     path('', jurycore.views.public_views.home, name='home'),
+    path('legend/', TemplateView.as_view(template_name="jurycore/help/legend.html"), name='legend'),
     path('dashboard/', overview.dashboard, name='dashboard'),
     #  Booklets
     path('booklet/create/', booklets.booklet_create, name='booklet_create'),

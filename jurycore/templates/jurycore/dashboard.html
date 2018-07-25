@@ -15,20 +15,33 @@
         {% endif %}
         <h1>{{ user.username }}'s jurymatic</h1>
         <div class="btn-group" role="group" aria-label="Actions">
-            <a href="{% url 'jurycore:booklet_create' %}"><button type="button" class="btn btn-primary">New booklet</button></a>
+            <a href="{% url 'jurycore:booklet_create' %}">
+                <button type="button" class="btn btn-primary">New booklet</button>
+            </a>
         </div>
-        <h2>Your booklets</h2>
-        {% if booklets %}
-            {% for booklet in booklets %}
-                <ul>
-                    <li><a href="{% url 'jurycore:booklet_show' booklet.slug %}">{{ booklet.session_name }}</a></li>
-                </ul>
-            {% endfor %}
-        {% else %}
-            <p>
-                You have not created any booklets yet.
-            </p>
-        {% endif %}
+        <div class="row">
+            <div class="col-md-4">
+                <h2>Your booklets</h2>
+                {% if booklets %}
+                    {% for booklet in booklets %}
+                        <ul>
+                            <li><a href="{% url 'jurycore:booklet_show' booklet.slug %}">{{ booklet.session_name }}</a>
+                            </li>
+                        </ul>
+                    {% endfor %}
+                {% else %}
+                    <p>
+                        You have not created any booklets yet.
+                    </p>
+                {% endif %}
+            </div>
+        <div class="col-md-4">
+            <h2>Help</h2>
+            <ul>
+                <li><a href="{% url 'jurycore:legend' %}">Legend for the evaluation table</a></li>
+            </ul>
+        </div>
+        </div>
     </div>
 
 {% endblock %}
