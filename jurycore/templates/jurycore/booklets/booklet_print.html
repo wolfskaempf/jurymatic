@@ -10,6 +10,17 @@
     </div>
 
     <div class="container-fluid">
+        <div class="text-center" style="margin-top: 18em">
+            <h1 style="font-size: 7em;">Jury Booklet</h1>
+            <h2 style="font-size: 5em;">{{ booklet.session_name }}</h2>
+            <p style="font-size: 2em; margin-top: 8em;">Proudly made with jurymatic</p>
+        </div>
+        <div class="page-break"></div>
+
+
+        {% include "jurycore/help/_legend_content.html" %}
+        <div class="page-break"></div>
+
 
         {% for committee in committees %}
             <h1>{{ committee.name }}</h1>
@@ -21,6 +32,14 @@
             <div class="page-break"></div>
 
         {% endfor %}
+
+
+        <h1>Back cover</h1>
+        <p>This jury booklet was made with jurymatic. Make your own at jurymatic.wolfskaempf.de</p>
+        <p>
+            jurymatic is <span class="octicon octicon-code"></span> with <span class="octicon octicon-heart"></span> by
+            @wolfskaempf
+        </p>
 
     </div>
 {% endblock %}
