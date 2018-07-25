@@ -33,7 +33,7 @@ def committee_show(request, booklet, uuid):
 
     delegates = Delegate.objects.filter(committee=committee)
 
-    context = {"committee": committee, "delegates": delegates}
+    context = {"committee": committee, "delegates": delegates, "booklet": booklet}
     template = "jurycore/committees/committee_show.html"
     return render(request, template, context)
 

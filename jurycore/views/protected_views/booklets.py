@@ -160,9 +160,9 @@ def booklet_revoke_access(request, slug, username):
 @permission_required_or_403('view_booklet', (Booklet, 'slug', 'booklet'))
 def booklet_print(request, booklet):
     """ This view lists all committees and all delegates at the same time, formatted for printing """
-    booklet = Booklet.objects.get(slug=booklet)
+    booklet = get_object_or_404(Booklet, slug=booklet)
     committees = Committee.objects.filter(booklet=booklet).order_by("name")
 
-    context = {"committees": committees}
+    context = {"committees": committees, "booklet": booklet}
     template = "jurycore/booklets/booklet_print.html"
     return render(request, template, context)
