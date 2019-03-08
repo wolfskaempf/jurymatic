@@ -30,11 +30,6 @@ class Booklet(models.Model):
         unique_slugify(self, slug_str)
         super(Booklet, self).save(*args, **kwargs)
 
-    class Meta:
-        permissions = (
-            ('view_booklet', 'Can view booklet'),
-        )
-
 
 class Delegate(models.Model):
     uuid = UUIDField(default=uuid.uuid4, editable=False, unique=True)
@@ -59,11 +54,6 @@ class Delegate(models.Model):
 
     def __str__(self):
         return "%s (%s, %s)" % (self.name, self.committee.name, self.delegation.name)
-
-    class Meta:
-        permissions = (
-            ('view_delegate', 'Can view delegate'),
-        )
 
 
 @receiver(models.signals.post_delete, sender=Delegate)
@@ -107,10 +97,6 @@ class Delegation(models.Model):
     def __str__(self):
         return self.name
 
-    class Meta:
-        permissions = (
-            ('view_delegation', 'Can view delegation'),
-        )
 
 
 class Committee(models.Model):
@@ -120,8 +106,3 @@ class Committee(models.Model):
 
     def __str__(self):
         return self.name
-
-    class Meta:
-        permissions = (
-            ('view_committee', 'Can view committee'),
-        )
