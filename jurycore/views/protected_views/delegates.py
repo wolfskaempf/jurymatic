@@ -34,8 +34,6 @@ def delegate_create(request, booklet):
     """This view create a delegate"""
     booklet = get_object_or_404(Booklet, slug=booklet)
     form = DelegateForm()
-    form.fields['committee'].queryset = Committee.objects.filter(booklet=booklet)
-    form.fields['delegation'].queryset = Delegation.objects.filter(booklet=booklet)
 
     if request.method == "POST":
         form = DelegateForm(request.POST, request.FILES)
@@ -46,6 +44,9 @@ def delegate_create(request, booklet):
             process_delegate_images(delegate)
             messages.success(request, form.cleaned_data['name'] + ' has been added successfully.')
             form = DelegateForm()
+
+    form.fields['committee'].queryset = Committee.objects.filter(booklet=booklet)
+    form.fields['delegation'].queryset = Delegation.objects.filter(booklet=booklet)
 
     template = "jurycore/delegates/delegate_create.html"
     context = {"form": form, "booklet": booklet}
@@ -60,8 +61,7 @@ def delegate_register(request, booklet, uuid):
         return HttpResponseForbidden()
 
     form = DelegateForm()
-    form.fields['committee'].queryset = Committee.objects.filter(booklet=booklet)
-    form.fields['delegation'].queryset = Delegation.objects.filter(booklet=booklet)
+
 
     if request.method == "POST":
         form = DelegateForm(request.POST, request.FILES)
@@ -72,6 +72,9 @@ def delegate_register(request, booklet, uuid):
             process_delegate_images(delegate)
             messages.success(request, 'Thank you, ' + form.cleaned_data['name'] + '. Your registration was successful.')
             form = DelegateForm()
+
+    form.fields['committee'].queryset = Committee.objects.filter(booklet=booklet)
+    form.fields['delegation'].queryset = Delegation.objects.filter(booklet=booklet)
 
     template = "jurycore/delegates/delegate_register.html"
     context = {"form": form, "booklet": booklet}
@@ -89,8 +92,6 @@ def delegate_update(request, booklet, uuid):
         return HttpResponseForbidden()
 
     form = DelegateForm(instance=delegate)
-    form.fields['committee'].queryset = Committee.objects.filter(booklet=booklet)
-    form.fields['delegation'].queryset = Delegation.objects.filter(booklet=booklet)
 
     if request.method == "POST":
         form = DelegateForm(request.POST, request.FILES, instance=delegate)
@@ -98,6 +99,9 @@ def delegate_update(request, booklet, uuid):
             form.save()
             messages.success(request, form.cleaned_data['name'] + ' has been updated successfully.')
             return HttpResponseRedirect(reverse('jurycore:delegate_list', args=[booklet.slug]))
+
+    form.fields['committee'].queryset = Committee.objects.filter(booklet=booklet)
+    form.fields['delegation'].queryset = Delegation.objects.filter(booklet=booklet)
 
     template = "jurycore/delegates/delegate_update.html"
     context = {"form": form, "booklet": booklet}
