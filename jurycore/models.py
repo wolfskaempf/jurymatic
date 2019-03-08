@@ -12,6 +12,7 @@ from django.dispatch import receiver
 from django.utils.text import slugify
 from imagekit.models import ImageSpecField
 from pilkit.processors import ResizeToFill
+from imagekit.utils import get_cache
 
 from jurycore.helpers.slug_helper import unique_slugify
 
@@ -62,8 +63,23 @@ def auto_delete_file_on_delete(sender, instance, **kwargs):
     Deletes file from filesystem
     when corresponding Delegate object is deleted.
     """
-    if instance.photo:
-        os.remove(instance.photo.path)
+
+    if not instance.pk:
+        return False
+
+    # Delete thumbnails
+    for field in ['photo_thumbnail', 'photo_print']:
+        field = getattr(instance, field)
+        try:
+            file = field.file
+        except FileNotFoundError:
+            pass
+        else:
+            cache_backend = field.cachefile_backend
+            cache_backend.cache.delete(cache_backend.get_key(file))
+            field.storage.delete(file.name)
+    # Delete original photo
+    instance.photo.delete(save=False)
 
 
 @receiver(models.signals.pre_save, sender=Delegate)
@@ -81,10 +97,28 @@ def auto_delete_file_on_change(sender, instance, **kwargs):
     except Delegate.DoesNotExist:
         return False
 
+    # Check if photo changed
     new_file = instance.photo
     if not old_file == new_file:
-        os.remove(old_file.path)
+        old_instance = Delegate.objects.get(pk=instance.pk)
 
+        # Delete thumbnails
+        for field in ['photo_thumbnail', 'photo_print']:
+            field = getattr(old_instance, field)
+            try:
+                file = field.file
+            except FileNotFoundError:
+                pass
+            else:
+                cache_backend = field.cachefile_backend
+                cache_backend.cache.delete(cache_backend.get_key(file))
+                field.storage.delete(file.name)
+        # Delete original photo
+        old_instance.photo.delete(save=False)
+        # Clear cache
+        # necessary because the name of the thumbnails change
+        # and the cache still points to the old (and now deleted) photos
+        get_cache().clear()
 
 class Delegation(models.Model):
     uuid = UUIDField(default=uuid.uuid4, editable=False, unique=True)
@@ -94,7 +128,6 @@ class Delegation(models.Model):
 
     def __str__(self):
         return self.name
-
 
 
 class Committee(models.Model):
