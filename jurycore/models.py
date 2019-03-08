@@ -63,8 +63,7 @@ def auto_delete_file_on_delete(sender, instance, **kwargs):
     when corresponding Delegate object is deleted.
     """
     if instance.photo:
-        if os.path.isfile(instance.photo.path):
-            os.remove(instance.photo.path)
+        os.remove(instance.photo.path)
 
 
 @receiver(models.signals.pre_save, sender=Delegate)
