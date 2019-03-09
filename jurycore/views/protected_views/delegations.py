@@ -29,7 +29,7 @@ def delegation_show(request, booklet, uuid):
     if not delegation.booklet == booklet:
         return HttpResponseForbidden()
 
-    delegates = Delegate.objects.filter(delegation=delegation).order_by("committee__name")
+    delegates = Delegate.objects.filter(delegation=delegation, booklet=booklet).order_by("committee__name")
 
     context = {"delegation": delegation, "delegates": delegates, "delegation_show": True, "booklet": booklet}
     template = "jurycore/delegations/delegation_show.html"

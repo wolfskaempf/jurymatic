@@ -31,7 +31,7 @@ def committee_show(request, booklet, uuid):
     if not committee.booklet == booklet:
         return HttpResponseForbidden()
 
-    delegates = Delegate.objects.filter(committee=committee)
+    delegates = Delegate.objects.filter(committee=committee, booklet=booklet)
 
     context = {"committee": committee, "delegates": delegates, "booklet": booklet}
     template = "jurycore/committees/committee_show.html"

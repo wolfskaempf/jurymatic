@@ -26,7 +26,10 @@
             <h1>{{ committee.name }}</h1>
 
             {% for delegate in committee.delegate_set.all %}
-                {% include "jurycore/_delegate_row.html" %}
+                {% if delegate.booklet == booklet %}
+                    {# The above check ensures, that incorrectly created delegates won't show up to people who are not allowed to see them #}
+                    {% include "jurycore/_delegate_row.html" %}
+                {% endif %}
             {% endfor %}
 
             <div class="page-break"></div>
