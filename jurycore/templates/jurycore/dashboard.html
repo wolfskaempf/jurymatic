@@ -6,6 +6,9 @@
 
 {% block content %}
     <div class="container">
+        <div class="alert alert-danger" role="alert">
+                <p class="">Please note that booklets will be deleted after 30 days of inactivity to enhance GDPR compliance.</p>
+        </div>
         {% if messages %}
             <div class="alert alert-success" role="alert">
                 {% for message in messages %}
@@ -35,12 +38,12 @@
                     </p>
                 {% endif %}
             </div>
-        <div class="col-md-4">
-            <h2>Help</h2>
-            <ul>
-                <li><a href="{% url 'jurycore:legend' %}">Legend for the evaluation table</a></li>
-            </ul>
-        </div>
+            <div class="col-md-4">
+                <h2>Help</h2>
+                <ul>
+                    <li><a href="{% url 'jurycore:legend' %}">Legend for the evaluation table</a></li>
+                </ul>
+            </div>
         </div>
     </div>
 
