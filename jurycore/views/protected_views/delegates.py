@@ -40,6 +40,8 @@ def delegate_create(request, booklet):
         if form.is_valid():
             delegate = form.save(False)
             delegate.booklet = booklet
+            if booklet != delegate.committee.booklet or booklet != delegate.delegation.booklet:
+                return HttpResponseForbidden()
             delegate.save()
             process_delegate_images(delegate)
             messages.success(request, form.cleaned_data['name'] + ' has been added successfully.')
@@ -68,6 +70,8 @@ def delegate_register(request, booklet, uuid):
         if form.is_valid():
             delegate = form.save(False)
             delegate.booklet = booklet
+            if booklet != delegate.committee.booklet or booklet != delegate.delegation.booklet:
+                return HttpResponseForbidden()
             delegate.save()
             process_delegate_images(delegate)
             messages.success(request, 'Thank you, ' + form.cleaned_data['name'] + '. Your registration was successful.')
@@ -96,6 +100,8 @@ def delegate_update(request, booklet, uuid):
     if request.method == "POST":
         form = DelegateForm(request.POST, request.FILES, instance=delegate)
         if form.is_valid():
+            if booklet != delegate.committee.booklet or booklet != delegate.delegation.booklet:
+                return HttpResponseForbidden()
             form.save()
             process_delegate_images(delegate)
             messages.success(request, form.cleaned_data['name'] + ' has been updated successfully.')
