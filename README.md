@@ -30,7 +30,7 @@ Any popular Linux distribution should be fine. Ubuntu 18.04 was used for the fol
 1. Follow the steps described in the usage section to start `jurymatic`.
 
 
-If you encounter issues during installation, make sure at least the libjpeg and zlib [requirements for pillow](https://pillow.readthedocs.io/en/5.2.x/installation.html) are satisfied for your distribution.
+If you encounter issues during installation, make sure at least the libjpeg and zlib [requirements for pillow](https://pillow.readthedocs.io/en/latest/installation.html) are satisfied for your distribution.
 
 ### Windows
 
