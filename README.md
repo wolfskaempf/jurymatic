@@ -1,7 +1,7 @@
 # jurymatic
 The final solution for creating jury booklets for events of the European Youth Parliament
 
-[![Home Page of jurymatic](http://i.imgur.com/whWcu7O.png)](https://www.youtube.com/playlist?list=PLWqZWxSNRmk83SRJ2hx3tqCu2GrglyhFW)
+[![Home Page of jurymatic](https://i.imgur.com/0S898oB.png)](https://www.youtube.com/playlist?list=PLWqZWxSNRmk83SRJ2hx3tqCu2GrglyhFW)
 
 ## Installation
 If you like watching video tutorials, you can have a look at this [playlist of videos on how to use `jurymatic`](https://www.youtube.com/playlist?list=PLWqZWxSNRmk83SRJ2hx3tqCu2GrglyhFW). If you're not into that, here's the quick rundown.
