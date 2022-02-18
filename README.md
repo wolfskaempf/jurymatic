@@ -1,5 +1,5 @@
 # jurymatic
-The final solution for creating jury booklets for events of the European Youth Parliament
+The optimal solution for creating jury booklets for events of the European Youth Parliament
 
 [![Home Page of jurymatic](https://i.imgur.com/0S898oB.png)](https://www.youtube.com/playlist?list=PLWqZWxSNRmk83SRJ2hx3tqCu2GrglyhFW)
 
